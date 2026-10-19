@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    database: WHALES
+    schema: RAW
+    tables:
+      - name: obis_occurrence
+        description: >
+          One row per whale or dolphin record in the West Coast box (32 to 49.5 N, 130 to 116 W), read from the
+          OBIS Parquet archive inside Snowflake (load/02_obis.sql). Everything useful sits in one JSON column,
+          INTERPRETED, with about 80 keys; seven are used.
+      - name: obis_dataset
+        description: One row per OBIS dataset that contributed a record, with its title and full API record (load/04_datasets.py).
+      - name: inat_observations
+        description: Every iNaturalist observation of anything, 283 million rows (load/03_inat.sql). dim_date counts, per day, the people recording wildlife around the bay.

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/apple-touch-icon.png" />
+    <link rel="manifest" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>06_coast.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>06 · The Weekend Holds Along the Coast</title>
+    <script type="module" crossorigin src="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/index-DafnX1Xx.js"></script>
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/rolldown-runtime-B0Z9INg1.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/react-CUdNIagt.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/compiler-runtime-BQ9S8nyo.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/useEvent-Dc9HkKI2.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/react-dom-CKsE8sC1.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/schemas-BL-NsLlF.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/isObject-BCaOs5rp.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/isSymbol-oX0TOjjx.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/now-Cmx0b_zA.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/debounce-aFmHgJZY.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/isArrayLikeObject-DnwgSs_Z.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/_baseMerge-CQpUq7ep.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/objects-snlMn4yk.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/jsx-runtime-B74pBk57.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/useEventListener-BdZUApHd.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/invariant-Ci2dTZ72.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/config-BxZgoFvi.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/utils-B4K466FK.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/session-DXKMv4Bs.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/Deferred-CrTnjj37.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/config-DpGPGznL.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/clsx-DB0hHKMi.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/cn-ldLVeaqm.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/fullscreen-BmzAqMKq.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-CyYN7zJg.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/menu-items-BBdeXCvU.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/use-restore-focus-B98SEiGc.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/button-BoklZTGL.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/createLucideIcon-rHn2EdoM.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/check-Wea4hZ6R.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/context-BFOBKCJB.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/useNumberFormatter-C4-_TnkF.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/select-BplWpfFo.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/circle-CeQt3rdW.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/toast-KNfsFUiB.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/tooltip-DR2Z2N4w.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/paths-CzfpItSz.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/useLifecycle-DKSBdWUf.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/toDate-BbJ1_N2T.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/database-zap-CrkOvbyN.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/alert-dialog-CeE3i3Qa.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/arrays-BqUx5USx.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/once-Haz_uxEL.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/numbers-DsgsDslU.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/useDebounce-DMbg9X18.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/input-BDakodZ2.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/use-toast-CC89xOwH.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/requests-yTHMxhVa.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/uuid-k9DpjH68.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/write-secret-modal-BiG2tahJ.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/plus-gbN72xHe.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/trash-2-BJG-7Qob.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/preload-helper-HclGiUj8.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-BczecT6V.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-BTskHGpb.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/capabilities-Bj3s1hGN.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/cjs-C49f7GXV.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/createReducer-BPvK7C_R.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-Ccyblc8N.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/marked.esm-B_3iMIUq.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/strings-BHZPE0Mc.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-BN-7G8qZ.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/badge-DFf033uX.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-CiUBikfn.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-MRn68vX1.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-Bviq_Dee.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-DBqBVprh.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dist-DueXZKz9.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/stex-CJTNBbet.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/useTheme-DcnXlv0_.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/useAsyncData-DucTwMkf.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/purify.es-CYRiAeUx.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/cells-CzugpTQu.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/get-DjNf4SIX.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/copy-RyCOE8jo.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/copy-BhJktFeI.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/copy-icon-DFhUGBjO.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/ErrorBoundary-BeE1cdgM.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/config-B4VJJibu.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/chevron-right-DOPs2jx8.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/dropdown-menu-VuyoeQOD.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/LazyAnyLanguageCodeMirror-B_IYTCX5.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/hat-glasses-DVgK5i5l.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/package-BeYhVWvM.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/errors-D9vyuMar.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/defaultLocale-CNPGWpMu.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/precisionRound-Bq_nmf5u.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/defaultLocale-D5bOh7g6.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/vega-loader.browser-CLRkNgm7.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/tooltip-PLkI_UfK.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/filename-fxG7K_MU.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/micromark-factory-space-D9Dr-k4J.js">
+    <link rel="modulepreload" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/chunk-YOKDWASO-CaoEAGJk.js">
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/cells-0PFKL3SH.css">
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/npm/@marimo-team/frontend@0.25.1/dist/assets/index--sT8xf-8.css">
+  
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_STATIC__", {
+        value: Object.freeze({
+            files: Object.freeze({}),
+            modelNotifications: Object.freeze([]),
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_EXPORT_CONTEXT__", {
+        value: Object.freeze({
+            trusted: true,
+            notebookCode: "import marimo\n\n__generated_with = \"0.25.1\"\napp = marimo.App(\n    width=\"medium\",\n    app_title=\"06 \u00b7 The Weekend Holds Along the Coast\",\n    css_file=\"../site.css\",\n    html_head_file=\"../head.html\",\n    sql_output=\"pandas\",\n)\n\n\n@app.cell(hide_code=True)\ndef _():\n    import marimo as mo\n\n    return (mo,)\n\n\n@app.cell(hide_code=True)\ndef _(mo):\n    mo.md(r\"\"\"\n    \u003Cheader class=\"wh-top\"\u003E\u003Ca class=\"wh-brand\" data-portfolio=\"home\"\u003EBrandon Connely\u003C/a\u003E\u003Cnav class=\"wh-nav\"\u003E\u003Ca class=\"wh-btn\" href=\"../index.html\"\u003EAll Notebooks\u003C/a\u003E\u003Ca class=\"wh-btn\" href=\"05_lockdown.html\"\u003E\u2190 Previous: 05\u003C/a\u003E\u003Ca class=\"wh-btn wh-case\" data-portfolio=\"case\"\u003ECase Study\u003C/a\u003E\u003C/nav\u003E\u003C/header\u003E\n    \"\"\")\n    return\n\n\n@app.cell(hide_code=True)\ndef _(mo):\n    mo.md(r\"\"\"\n    \u003Cp class=\"wh-kicker\"\u003ENotebook 06 of 06\u003C/p\u003E\n\n    # The Weekend Holds Along the Coast\n\n    Monterey Bay has one busy whale-watching fleet. Does the weekend pattern show up along the rest of the\n    West Coast too? `dim_location.area` splits the box at Point Conception (34.45 N), the Oregon border\n    (42 N) and the Columbia River (46.25 N), with Monterey Bay taken out of northern California. The\n    weekend ratio is the same as in notebook 01.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    # One Snowflake session for the whole notebook: the warehouse that runs the queries and the schema dbt builds\n    # the star in. Temporary views made in one cell stay visible to the cells after it.\n    import snowflake.connector\n\n    snowflake_session = snowflake.connector.connect(\n        connection_name=\"whales\", warehouse=\"WHALES_WH\", database=\"WHALES\", schema=\"MARTS\"\n    )\n    return (snowflake_session,)\n\n\n@app.cell(hide_code=True)\ndef _(mo):\n    mo.md(r\"\"\"\n    ## Weekend Ratio for Each Area and Kind of Source\n    Areas north to south; kinds with at least 200 records.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _(mo, snowflake_session):\n    ratio_by_area = mo.sql(\n        f\"\"\"\n        SELECT\n            dim_location.area,\n            dim_dataset.kind,\n            COUNT(*) AS records,\n            ROUND(\n                (COUNT_IF(dim_date.is_weekend) / 2) / NULLIF(COUNT_IF(dim_date.is_midweek) / 3, 0),\n                2\n            ) AS weekend_ratio\n        FROM fct_sighting\n        JOIN dim_location ON dim_location.location_key = fct_sighting.location_key\n        JOIN dim_date ON dim_date.date_key = fct_sighting.date_key\n        JOIN dim_dataset ON dim_dataset.dataset_key = fct_sighting.dataset_key\n        GROUP BY dim_location.area, dim_location.area_order, dim_dataset.kind\n        HAVING COUNT(*) \u003E= 200\n        ORDER BY dim_location.area_order, dim_dataset.kind\n        \"\"\",\n        engine=snowflake_session,\n        output=False,\n    )\n    return (ratio_by_area,)\n\n\n@app.cell(hide_code=True)\ndef _(mo, ratio_by_area):\n    mo.ui.table(ratio_by_area, page_size=50, selection=None, show_download=False)\n    return\n\n\n@app.cell(hide_code=True)\ndef _(mo):\n    mo.md(r\"\"\"\n    ## How Sure? Resample Weeks in Each Area\n    The public ratio in each area, with a 95% range as in notebook 01. Each area draws its own weeks, so the Monterey Bay range can differ by a hundredth from the one in notebook 01.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _(mo, snowflake_session):\n    area_resample = mo.sql(\n        f\"\"\"\n        WITH weekly_counts AS (\n            SELECT\n                dim_location.area,\n                dim_location.area_order,\n                DATEADD(DAY, 1 - dim_date.weekday_number, dim_date.date) AS week_start,\n                COUNT_IF(dim_date.is_weekend) AS weekend_records,\n                COUNT_IF(dim_date.is_midweek) AS midweek_records\n            FROM fct_sighting\n            JOIN dim_location ON dim_location.location_key = fct_sighting.location_key\n            JOIN dim_date ON dim_date.date_key = fct_sighting.date_key\n            JOIN dim_dataset ON dim_dataset.dataset_key = fct_sighting.dataset_key\n            WHERE dim_dataset.kind = 'public'\n            GROUP BY dim_location.area, dim_location.area_order, week_start\n        ),\n\n        numbered_weeks AS (\n            SELECT\n                area,\n                area_order,\n                ROW_NUMBER() OVER (PARTITION BY area ORDER BY week_start) AS week_number,\n                COUNT(*) OVER (PARTITION BY area) AS total_weeks,\n                weekend_records,\n                midweek_records\n            FROM weekly_counts\n        ),\n\n        replicates AS (\n            SELECT SEQ4() AS replicate\n            FROM TABLE(GENERATOR(ROWCOUNT =\u003E 2000))\n        ),\n\n        -- In each area, each replicate draws as many weeks as the area has,\n        -- at random and with replacement.\n        resample_draws AS (\n            SELECT\n                replicates.replicate,\n                numbered_weeks.area,\n                1 + MOD(\n                    ABS(HASH(replicates.replicate, numbered_weeks.area, numbered_weeks.week_number, 20261016)),\n                    numbered_weeks.total_weeks\n                ) AS week_number\n            FROM replicates\n            CROSS JOIN numbered_weeks\n        ),\n\n        resampled_ratios AS (\n            SELECT\n                resample_draws.area,\n                resample_draws.replicate,\n                (SUM(numbered_weeks.weekend_records) / 2)\n                / NULLIF(SUM(numbered_weeks.midweek_records) / 3, 0) AS weekend_ratio\n            FROM resample_draws\n            JOIN numbered_weeks\n              ON numbered_weeks.area = resample_draws.area\n             AND numbered_weeks.week_number = resample_draws.week_number\n            GROUP BY resample_draws.area, resample_draws.replicate\n        ),\n\n        observed_ratios AS (\n            SELECT\n                area,\n                ANY_VALUE(area_order) AS area_order,\n                (SUM(weekend_records) / 2) / NULLIF(SUM(midweek_records) / 3, 0) AS weekend_ratio\n            FROM numbered_weeks\n            GROUP BY area\n        )\n\n        SELECT\n            observed_ratios.area,\n            ROUND(observed_ratios.weekend_ratio, 2) AS weekend_ratio,\n            ROUND(PERCENTILE_CONT(0.025) WITHIN GROUP (ORDER BY resampled_ratios.weekend_ratio), 2)\n                AS range_low,\n            ROUND(PERCENTILE_CONT(0.975) WITHIN GROUP (ORDER BY resampled_ratios.weekend_ratio), 2)\n                AS range_high\n        FROM observed_ratios\n        JOIN resampled_ratios ON resampled_ratios.area = observed_ratios.area\n        GROUP BY observed_ratios.area, observed_ratios.area_order, observed_ratios.weekend_ratio\n        ORDER BY observed_ratios.area_order\n        \"\"\",\n        engine=snowflake_session,\n        output=False,\n    )\n    return (area_resample,)\n\n\n@app.cell(hide_code=True)\ndef _(area_resample, mo):\n    mo.ui.table(area_resample, page_size=50, selection=None, show_download=False)\n    return\n\n\n@app.cell(hide_code=True)\ndef _(mo):\n    mo.md(r\"\"\"\n    ## Result\n    Public sightings rise at weekends in **4 of 5 areas**: a weekend day carries 1.44\u00d7 the public sightings of a\n    midweek day in Washington and British Columbia, 1.85\u00d7 in northern California outside the bay, 1.52\u00d7 in\n    Monterey Bay and 1.83\u00d7 in southern California. Oregon, with the fewest public records, shows none: a weekend\n    day carries 0.87\u00d7 the public sightings of a midweek day, and the 95% range (0.67 to 1.16) includes 1, no\n    difference at all.\n    \"\"\")\n    return\n\n\n@app.cell(hide_code=True)\ndef _(mo):\n    mo.md(r\"\"\"\n    ## Limits\n    * Monterey has an unusually large whale-watching fleet; this comparison only sketches the effect elsewhere.\n    * Puget Sound's main sighting network is not in the OBIS archive, so Washington's public records are\n      undercounted.\n    \"\"\")\n    return\n\n\nif __name__ == \"__main__\":\n    app.run()\n",
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+
+            <meta name="description" content="Whales Only Exist on Weekends: one of six notebooks, the project's SQL run in Snowflake with its results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght,SOFT,WONK@9..144,700..900,0..100,0..1&family=Space+Mono:wght@400;700&display=swap">
+<script src="../site.js"></script>
+
+<style title='marimo-custom'>/* The notebook pages, in the style of brandonconnely.com (src/site/site.css there): the page is the water, the
+   top bar sits on it, and the notebook is one cream panel with an ink line and a hard shadow. marimo draws each
+   cell as its own block, so the panel is drawn on the cells: the first cell (the top bar) sits on the water, and
+   the cells after it join into one panel. */
+:root {
+  --wh-bg: #0a2c33;
+  --wh-cream: #fbf5e6;
+  --wh-sand: #f1e6c8;
+  --wh-ink: #1d2b2f;
+  --wh-ink-2: #3c4d51;
+  --wh-teal: #1f7d7a;
+  --wh-red: #d71920;
+  --wh-shadow: #062228;
+  --wh-display: 'Fraunces', Georgia, serif;
+  --wh-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wh-mono: 'Space Mono', 'Courier New', monospace;
+  /* marimo's own font and width settings */
+  --text-font: var(--wh-body);
+  --heading-font: var(--wh-display);
+  --monospace-font: var(--wh-mono);
+  --content-width-medium: 1120px;
+}
+html, body { background: var(--wh-bg) !important; }
+#App {
+  background-color: var(--wh-bg) !important;
+  background-image: linear-gradient(180deg, #3c948b 0, #277176 420px, #175a63 1100px, #0f4049 2000px, var(--wh-bg) 100%) !important;
+  background-attachment: local !important;
+  color: var(--wh-ink);
+  font: 400 18px/1.6 var(--wh-body);
+  overflow-x: hidden !important;
+}
+
+/* marimo's space above the first cell: the top bar sits where the portfolio's does */
+#App > div[class*="pt-8"] { padding-top: 0 !important; }
+
+/* ---------- the panel, drawn on the cells ---------- */
+#App .flex.flex-col.gap-5:has(> .marimo-cell) { gap: 0; padding: 26px 0 40px; }
+#App .marimo-cell {
+  margin: 0; padding: 10px 50px; background: var(--wh-cream) !important;
+  border: 0 solid var(--wh-ink) !important; border-left-width: 2.5px !important; border-right-width: 2.5px !important; border-radius: 0;
+  box-shadow: 7px 7px 0 var(--wh-shadow);
+}
+#App .marimo-cell > div:not(.tray) { border: 0 !important; }
+#App .marimo-cell:nth-child(2) { padding-top: 46px; border-top-width: 2.5px !important; border-radius: 18px 18px 0 0; }
+#App .marimo-cell:last-child { padding-bottom: 46px; border-bottom-width: 2.5px !important; border-radius: 0 0 18px 18px; }
+#App .marimo-cell:first-child {
+  margin-bottom: 40px; padding: 0; background: transparent !important; border-width: 0 !important; box-shadow: none;
+}
+#App .marimo-cell:first-child [id^="output-"] { padding-left: 0; padding-right: 0; overflow: visible; }
+/* the loading screen, before the notebook appears */
+#root > div:not(:has(#App)) { color: var(--wh-cream); }
+#App .marimo-cell .output-area, #App .marimo-cell .output { max-width: 100%; }
+
+/* ---------- the top bar ---------- */
+.wh-top { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; }
+.wh-brand {
+  margin-right: auto; color: var(--wh-cream) !important; text-decoration: none !important;
+  font: 900 34px/1 var(--wh-display); font-variation-settings: 'SOFT' 100, 'WONK' 1; letter-spacing: -0.01em;
+  text-shadow: 3px 3px 0 var(--wh-shadow);
+}
+.wh-nav { display: flex; flex-wrap: wrap; gap: 12px; }
+.wh-btn {
+  display: inline-flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 10px 14px;
+  font: 700 12.5px/1.2 var(--wh-mono) !important; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none !important;
+  color: var(--wh-ink) !important; background: var(--wh-cream); border: 2px solid var(--wh-ink); border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--wh-ink); transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+.wh-btn:hover { background: #fff; transform: rotate(var(--tilt, 0deg)) translate(-1px, -2px); box-shadow: 4px 5px 0 var(--wh-ink); }
+.wh-btn:active { transform: rotate(var(--tilt, 0deg)) translate(2px, 2px); box-shadow: 1px 1px 0 var(--wh-ink); }
+.wh-btn:focus-visible { outline: 3px solid var(--wh-red); outline-offset: 3px; }
+.wh-nav .wh-btn:nth-child(1) { --tilt: -1.2deg; }
+.wh-nav .wh-btn:nth-child(2) { --tilt: 0.8deg; }
+.wh-nav .wh-btn:nth-child(3) { --tilt: -0.6deg; }
+.wh-nav .wh-btn:nth-child(4) { --tilt: 1.1deg; }
+.wh-btn.wh-case { color: #fff !important; background: var(--wh-red); }
+.wh-btn.wh-case:hover { background: #e5342b; }
+
+/* ---------- text ---------- */
+#App .marimo-cell .markdown { font-family: var(--wh-body); font-size: 18px; line-height: 1.6; color: var(--wh-ink); max-width: none; }
+#App .marimo-cell .markdown p, #App .marimo-cell .markdown li, #App .marimo-cell .markdown .paragraph { color: var(--wh-ink); }
+#App .marimo-cell .markdown h1, #App .marimo-cell .markdown h2, #App .marimo-cell .markdown h3 {
+  font-family: var(--wh-display); font-variation-settings: 'SOFT' 100, 'WONK' 1; color: var(--wh-ink); letter-spacing: -0.015em;
+}
+#App .marimo-cell .markdown h1 { margin: 0 0 0.55em; font-size: clamp(36px, 5.6vw, 62px); font-weight: 900; line-height: 1.03; }
+#App .marimo-cell .markdown h2 {
+  margin: 0.9em 0 0.45em; padding: 0; border: 0; background: none;
+  font-size: clamp(25px, 3.4vw, 34px); font-weight: 800; line-height: 1.12;
+}
+#App .marimo-cell .markdown a { color: var(--wh-teal); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+#App .marimo-cell .markdown a.wh-btn, #App .marimo-cell .markdown a.wh-brand { text-decoration: none; }
+#App .marimo-cell .markdown strong { color: var(--wh-ink); font-weight: 700; }
+#App .marimo-cell .markdown em { color: var(--wh-ink); }
+#App .marimo-cell .markdown li::marker { color: var(--wh-red); font-weight: 700; }
+#App .marimo-cell .markdown code {
+  padding: 1px 6px; font-family: var(--wh-mono); font-size: 0.82em; font-weight: 400; color: var(--wh-ink);
+  background: var(--wh-sand); border: 1.5px solid rgba(29, 43, 47, 0.25); border-radius: 5px;
+}
+#App .marimo-cell .markdown code::before, #App .marimo-cell .markdown code::after { content: none; }
+.wh-kicker {
+  display: inline-block; margin: 0 0 22px !important; padding: 7px 10px 6px; transform: rotate(-2deg);
+  font: 700 12.5px/1 var(--wh-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--wh-cream) !important; background: var(--wh-teal); border: 2px solid var(--wh-ink); border-radius: 6px;
+}
+
+/* ---------- code: on slate, like the portfolio's code blocks ---------- */
+#App .marimo-cell .tray {
+  margin: 4px 0 12px; padding: 12px 6px 8px; background: var(--wh-ink) !important;
+  border: 2.5px solid var(--wh-ink); border-radius: 12px; box-shadow: 4px 4px 0 var(--wh-shadow);
+}
+#App .marimo-cell .tray > div { padding-bottom: 0; }
+#App .cm-editor, #App .cm-editor .cm-scroller, #App .cm-editor .cm-gutters { background: transparent !important; }
+/* one font, size and line height for the whole editor, set on the scroller and inherited by every part */
+#App .cm-editor .cm-scroller { font: 400 13.5px/1.6 var(--wh-mono) !important; }
+#App .cm-editor .cm-content, #App .cm-editor .cm-line, #App .cm-editor .cm-gutters, #App .cm-editor .cm-gutterElement {
+  font: inherit !important; line-height: inherit !important;
+}
+/* Line numbers are drawn on each line rather than in CodeMirror's gutter. The gutter sizes its numbers from
+   CodeMirror's estimate of each line's height, and an editor that has not yet scrolled into view keeps a wrong
+   estimate, so its numbers drifted away from the code. A number drawn on its own line cannot drift. */
+#App .cm-editor .cm-gutters { display: none !important; }
+#App .cm-editor .cm-content { counter-reset: wh-line; padding-left: 3.3em !important; }
+#App .cm-editor .cm-line { position: relative; counter-increment: wh-line; }
+#App .cm-editor .cm-line::before {
+  content: counter(wh-line); position: absolute; left: -3.3em; width: 2.3em; text-align: right;
+  color: #6f8a8c; font-style: normal; font-weight: 400; pointer-events: none; user-select: none;
+}
+#App .cm-editor .cm-content, #App .cm-editor .cm-content span { color: var(--wh-cream); }
+/* long lines scroll sideways inside the block, as the portfolio's code blocks do, rather than wrap */
+#App .cm-editor .cm-content.cm-lineWrapping { white-space: pre !important; overflow-wrap: normal !important; word-break: normal !important; }
+#App .cm-editor .cm-scroller { overflow-x: auto !important; scrollbar-color: #4f8a8c var(--wh-ink); }
+#App .cm-editor .cm-activeLine, #App .cm-editor .cm-activeLineGutter { background: transparent; }
+#App .cm-editor .cm-selectionBackground, #App .cm-editor ::selection { background: rgba(156, 195, 189, 0.35) !important; }
+#App .cm-editor .cm-cursor { border-left-color: var(--wh-cream); }
+#App .marimo-cell .tray .hover-action button { color: var(--wh-cream) !important; background: var(--wh-ink) !important; border-color: rgba(251, 245, 230, 0.35) !important; }
+
+/* ---------- outputs ---------- */
+/* marimo's data tables (this stylesheet is shared into each table's shadow root, so these rules apply there) */
+.rounded-md.border.overflow-hidden:has(table) { background: #fff; border: 2px solid var(--wh-ink) !important; border-radius: 10px; box-shadow: 4px 4px 0 var(--wh-ink); }
+.rounded-md.border.overflow-hidden:has(table) > .border-b { border-color: var(--wh-ink) !important; background: var(--wh-cream); }
+table.caption-bottom thead.bg-background, table.caption-bottom thead tr.bg-background { background: var(--wh-sand) !important; }
+table.caption-bottom thead th { color: var(--wh-ink) !important; font-family: var(--wh-mono); border-bottom: 2px solid var(--wh-ink); }
+table.caption-bottom tbody tr { border-color: rgba(29, 43, 47, 0.18) !important; }
+table.caption-bottom tbody tr.bg-background { background: #fff !important; }
+table.caption-bottom tbody td { font-family: var(--wh-mono); font-size: 13px; color: var(--wh-ink); }
+
+/* ---------- small screens ---------- */
+@media (max-width: 760px) {
+  #App > div[class*="px-1"] { padding-left: 16px !important; padding-right: 23px !important; }
+  #App .marimo-cell .absolute.-right-9 { display: none; }
+  #App .marimo-cell { box-shadow: 5px 5px 0 var(--wh-shadow); }
+  #App .marimo-cell:nth-child(2) { padding-top: 28px; border-radius: 14px 14px 0 0; }
+  #App .marimo-cell:last-child { padding-bottom: 28px; border-radius: 0 0 14px 14px; }
+  #App .marimo-cell .markdown { font-size: 16.5px; }
+  .wh-brand { font-size: 26px; }
+  .wh-nav { width: 100%; gap: 9px; }
+  .wh-btn { padding: 9px 10px; font-size: 11.5px !important; }
+  #App .cm-editor .cm-scroller { font-size: 12px !important; }
+  #App .marimo-cell { padding: 8px 14px; }
+  #App .marimo-cell [data-cell-role="output"] { padding-left: 0; padding-right: 0; }
+  #App .marimo-cell .markdown h1 { font-size: 34px; }
+}
+
+
+/* the result tables come from cells with their code hidden: marimo would still draw an empty code bar above each */
+#App .marimo-cell .tray:has(.cm.opacity-20) { display: none; }
+</style></head>
+  <body>
+    <div id="root"></div>
+    <script data-marimo="true">
+      Object.defineProperty(window, "__MARIMO_MOUNT_CONFIG__", {
+        value: Object.freeze({
+            "filename": "06_coast.py",
+            "cwd": "",
+            "lspWorkspace": null,
+            "mode": "read",
+            "version": "0.25.1",
+            "serverToken": "static",
+            "config": {"ai": {"allow_provider_config": true, "custom_providers": {}, "enabled": true, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "auto_close_pairs": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "code_lens": true, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "uv"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "show_tracebacks": false, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "after_delay", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"app_title": "06 \u00b7 The Weekend Holds Along the Coast", "css_file": "../site.css", "html_head_file": "../head.html", "sql_output": "pandas", "width": "medium"},
+            "layout": null,
+            "view": {"showAppCode": true},
+            "notebook": {"cells": [{"code": "import marimo as mo", "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "Hbol", "name": "_"}, {"code": "mo.md(r\"\"\"\n\u003Cheader class=\"wh-top\"\u003E\u003Ca class=\"wh-brand\" data-portfolio=\"home\"\u003EBrandon Connely\u003C/a\u003E\u003Cnav class=\"wh-nav\"\u003E\u003Ca class=\"wh-btn\" href=\"../index.html\"\u003EAll Notebooks\u003C/a\u003E\u003Ca class=\"wh-btn\" href=\"05_lockdown.html\"\u003E\u2190 Previous: 05\u003C/a\u003E\u003Ca class=\"wh-btn wh-case\" data-portfolio=\"case\"\u003ECase Study\u003C/a\u003E\u003C/nav\u003E\u003C/header\u003E\n\"\"\")", "code_hash": "7bccf88945f7db580bd3b5d0db649215", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "MJUe", "name": "_"}, {"code": "mo.md(r\"\"\"\n\u003Cp class=\"wh-kicker\"\u003ENotebook 06 of 06\u003C/p\u003E\n\n# The Weekend Holds Along the Coast\n\nMonterey Bay has one busy whale-watching fleet. Does the weekend pattern show up along the rest of the\nWest Coast too? `dim_location.area` splits the box at Point Conception (34.45 N), the Oregon border\n(42 N) and the Columbia River (46.25 N), with Monterey Bay taken out of northern California. The\nweekend ratio is the same as in notebook 01.\n\"\"\")", "code_hash": "75691035b7d9837e7bf983222c0906bf", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "vblA", "name": "_"}, {"code": "# One Snowflake session for the whole notebook: the warehouse that runs the queries and the schema dbt builds\n# the star in. Temporary views made in one cell stay visible to the cells after it.\nimport snowflake.connector\n\nsnowflake_session = snowflake.connector.connect(\n    connection_name=\"whales\", warehouse=\"WHALES_WH\", database=\"WHALES\", schema=\"MARTS\"\n)", "code_hash": "b0a7c793bf99f34ea15550ae60a8bf24", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": false}, "id": "bkHC", "name": "_"}, {"code": "mo.md(r\"\"\"\n## Weekend Ratio for Each Area and Kind of Source\nAreas north to south; kinds with at least 200 records.\n\"\"\")", "code_hash": "35e82dc256da620272cb94ae74134af8", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "lEQa", "name": "_"}, {"code": "ratio_by_area = mo.sql(\n    f\"\"\"\n    SELECT\n        dim_location.area,\n        dim_dataset.kind,\n        COUNT(*) AS records,\n        ROUND(\n            (COUNT_IF(dim_date.is_weekend) / 2) / NULLIF(COUNT_IF(dim_date.is_midweek) / 3, 0),\n            2\n        ) AS weekend_ratio\n    FROM fct_sighting\n    JOIN dim_location ON dim_location.location_key = fct_sighting.location_key\n    JOIN dim_date ON dim_date.date_key = fct_sighting.date_key\n    JOIN dim_dataset ON dim_dataset.dataset_key = fct_sighting.dataset_key\n    GROUP BY dim_location.area, dim_location.area_order, dim_dataset.kind\n    HAVING COUNT(*) \u003E= 200\n    ORDER BY dim_location.area_order, dim_dataset.kind\n    \"\"\",\n    engine=snowflake_session,\n    output=False,\n)", "code_hash": "f54c78a3412e21008633947300548aeb", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": false}, "id": "PKri", "name": "_"}, {"code": "mo.ui.table(ratio_by_area, page_size=50, selection=None, show_download=False)", "code_hash": "ef72cf981f2d7f342863a395cfdf03c2", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "Xref", "name": "_"}, {"code": "mo.md(r\"\"\"\n## How Sure? Resample Weeks in Each Area\nThe public ratio in each area, with a 95% range as in notebook 01. Each area draws its own weeks, so the Monterey Bay range can differ by a hundredth from the one in notebook 01.\n\"\"\")", "code_hash": "43a8a93ad5ed53c0d2671fedf3598c23", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "SFPL", "name": "_"}, {"code": "area_resample = mo.sql(\n    f\"\"\"\n    WITH weekly_counts AS (\n        SELECT\n            dim_location.area,\n            dim_location.area_order,\n            DATEADD(DAY, 1 - dim_date.weekday_number, dim_date.date) AS week_start,\n            COUNT_IF(dim_date.is_weekend) AS weekend_records,\n            COUNT_IF(dim_date.is_midweek) AS midweek_records\n        FROM fct_sighting\n        JOIN dim_location ON dim_location.location_key = fct_sighting.location_key\n        JOIN dim_date ON dim_date.date_key = fct_sighting.date_key\n        JOIN dim_dataset ON dim_dataset.dataset_key = fct_sighting.dataset_key\n        WHERE dim_dataset.kind = 'public'\n        GROUP BY dim_location.area, dim_location.area_order, week_start\n    ),\n\n    numbered_weeks AS (\n        SELECT\n            area,\n            area_order,\n            ROW_NUMBER() OVER (PARTITION BY area ORDER BY week_start) AS week_number,\n            COUNT(*) OVER (PARTITION BY area) AS total_weeks,\n            weekend_records,\n            midweek_records\n        FROM weekly_counts\n    ),\n\n    replicates AS (\n        SELECT SEQ4() AS replicate\n        FROM TABLE(GENERATOR(ROWCOUNT =\u003E 2000))\n    ),\n\n    -- In each area, each replicate draws as many weeks as the area has,\n    -- at random and with replacement.\n    resample_draws AS (\n        SELECT\n            replicates.replicate,\n            numbered_weeks.area,\n            1 + MOD(\n                ABS(HASH(replicates.replicate, numbered_weeks.area, numbered_weeks.week_number, 20261016)),\n                numbered_weeks.total_weeks\n            ) AS week_number\n        FROM replicates\n        CROSS JOIN numbered_weeks\n    ),\n\n    resampled_ratios AS (\n        SELECT\n            resample_draws.area,\n            resample_draws.replicate,\n            (SUM(numbered_weeks.weekend_records) / 2)\n            / NULLIF(SUM(numbered_weeks.midweek_records) / 3, 0) AS weekend_ratio\n        FROM resample_draws\n        JOIN numbered_weeks\n          ON numbered_weeks.area = resample_draws.area\n         AND numbered_weeks.week_number = resample_draws.week_number\n        GROUP BY resample_draws.area, resample_draws.replicate\n    ),\n\n    observed_ratios AS (\n        SELECT\n            area,\n            ANY_VALUE(area_order) AS area_order,\n            (SUM(weekend_records) / 2) / NULLIF(SUM(midweek_records) / 3, 0) AS weekend_ratio\n        FROM numbered_weeks\n        GROUP BY area\n    )\n\n    SELECT\n        observed_ratios.area,\n        ROUND(observed_ratios.weekend_ratio, 2) AS weekend_ratio,\n        ROUND(PERCENTILE_CONT(0.025) WITHIN GROUP (ORDER BY resampled_ratios.weekend_ratio), 2)\n            AS range_low,\n        ROUND(PERCENTILE_CONT(0.975) WITHIN GROUP (ORDER BY resampled_ratios.weekend_ratio), 2)\n            AS range_high\n    FROM observed_ratios\n    JOIN resampled_ratios ON resampled_ratios.area = observed_ratios.area\n    GROUP BY observed_ratios.area, observed_ratios.area_order, observed_ratios.weekend_ratio\n    ORDER BY observed_ratios.area_order\n    \"\"\",\n    engine=snowflake_session,\n    output=False,\n)", "code_hash": "9b4100e04b12127c574d382da74c71a0", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": false}, "id": "BYtC", "name": "_"}, {"code": "mo.ui.table(area_resample, page_size=50, selection=None, show_download=False)", "code_hash": "54ed964bd1390e565d1aa6a9a44f356a", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "RGSE", "name": "_"}, {"code": "mo.md(r\"\"\"\n## Result\nPublic sightings rise at weekends in **4 of 5 areas**: a weekend day carries 1.44\u00d7 the public sightings of a\nmidweek day in Washington and British Columbia, 1.85\u00d7 in northern California outside the bay, 1.52\u00d7 in\nMonterey Bay and 1.83\u00d7 in southern California. Oregon, with the fewest public records, shows none: a weekend\nday carries 0.87\u00d7 the public sightings of a midweek day, and the 95% range (0.67 to 1.16) includes 1, no\ndifference at all.\n\"\"\")", "code_hash": "8f96a021cc4c97120830de4718315d52", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "Kclp", "name": "_"}, {"code": "mo.md(r\"\"\"\n## Limits\n* Monterey has an unusually large whale-watching fleet; this comparison only sketches the effect elsewhere.\n* Puget Sound's main sighting network is not in the OBIS archive, so Washington's public records are\n  undercounted.\n\"\"\")", "code_hash": "f75c5fe6b67a768b13bebe2fdef00563", "config": {"column": null, "disabled": false, "expand_output": false, "hide_code": true}, "id": "emfo", "name": "_"}], "metadata": {"marimo_version": "0.25.1"}, "version": "1"},
+            "session": {"cells": [{"code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e", "console": [], "id": "Hbol", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "7bccf88945f7db580bd3b5d0db649215", "console": [], "id": "MJUe", "outputs": [{"data": {"text/markdown": "\u003Cspan class=\"markdown prose dark:prose-invert contents\"\u003E\u003Cheader class=\"wh-top\"\u003E\u003Ca class=\"wh-brand\" data-portfolio=\"home\"\u003EBrandon Connely\u003C/a\u003E\u003Cnav class=\"wh-nav\"\u003E\u003Ca class=\"wh-btn\" href=\"../index.html\"\u003EAll Notebooks\u003C/a\u003E\u003Ca class=\"wh-btn\" href=\"05_lockdown.html\"\u003E\u2190 Previous: 05\u003C/a\u003E\u003Ca class=\"wh-btn wh-case\" data-portfolio=\"case\"\u003ECase Study\u003C/a\u003E\u003C/nav\u003E\u003C/header\u003E\u003C/span\u003E"}, "type": "data"}]}, {"code_hash": "75691035b7d9837e7bf983222c0906bf", "console": [], "id": "vblA", "outputs": [{"data": {"text/markdown": "\u003Cspan class=\"markdown prose dark:prose-invert contents\"\u003E\u003Cp class=\"wh-kicker\"\u003ENotebook 06 of 06\u003C/span\u003E\n\n\u003Ch1 id=\"the-weekend-holds-along-the-coast\"\u003EThe Weekend Holds Along the Coast\u003C/h1\u003E\n\u003Cspan class=\"paragraph\"\u003EMonterey Bay has one busy whale-watching fleet. Does the weekend pattern show up along the rest of the\nWest Coast too? \u003Ccode\u003Edim_location.area\u003C/code\u003E splits the box at Point Conception (34.45 N), the Oregon border\n(42 N) and the Columbia River (46.25 N), with Monterey Bay taken out of northern California. The\nweekend ratio is the same as in notebook 01.\u003C/span\u003E\u003C/span\u003E"}, "type": "data"}]}, {"code_hash": "b0a7c793bf99f34ea15550ae60a8bf24", "console": [], "id": "bkHC", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "35e82dc256da620272cb94ae74134af8", "console": [], "id": "lEQa", "outputs": [{"data": {"text/markdown": "\u003Cspan class=\"markdown prose dark:prose-invert contents\"\u003E\u003Ch2 id=\"weekend-ratio-for-each-area-and-kind-of-source\"\u003EWeekend Ratio for Each Area and Kind of Source\u003C/h2\u003E\n\u003Cspan class=\"paragraph\"\u003EAreas north to south; kinds with at least 200 records.\u003C/span\u003E\u003C/span\u003E"}, "type": "data"}]}, {"code_hash": "f54c78a3412e21008633947300548aeb", "console": [], "id": "PKri", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "ef72cf981f2d7f342863a395cfdf03c2", "console": [], "id": "Xref", "outputs": [{"data": {"text/html": "\u003Cmarimo-ui-element object-id='Xref-0' random-id='4f2a5a7f-4c14-d6da-017a-8e960b196f5b'\u003E\u003Cmarimo-table data-initial-value='[]' data-label='null' data-data='\u0026quot;[{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;WA/BC\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;hydrophone\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:1271,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.96\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;WA/BC\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;other\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:648,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.24\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;WA/BC\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;public\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:22653,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.44\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;WA/BC\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;survey\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:3765,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.73\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;OR\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;public\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:3003,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.87\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;OR\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;survey\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:3102,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.81\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;N CA outside the bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;hydrophone\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:3809,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.88\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;N CA outside the bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;other\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:2801,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.04\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;N CA outside the bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;public\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:15291,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.85\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;N CA outside the bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;survey\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:8608,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.46\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;Monterey Bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;hydrophone\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:12375,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.89\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;Monterey Bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;other\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:6982,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.09\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;Monterey Bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;public\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:62170,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.52\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;Monterey Bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;survey\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:834,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.44\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;S CA\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;hydrophone\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:4918,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.01\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;S CA\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;other\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:4713,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.06\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;S CA\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;public\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:20480,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.83\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;S CA\u0026#92;\u0026quot;,\u0026#92;\u0026quot;KIND\u0026#92;\u0026quot;:\u0026#92;\u0026quot;survey\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RECORDS\u0026#92;\u0026quot;:10648,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.79\u0026#92;\u0026quot;}]\u0026quot;' data-total-rows='18' data-total-columns='4' data-max-columns='50' data-banner-text='\u0026quot;\u0026quot;' data-pagination='false' data-page-size='50' data-field-types='[[\u0026quot;AREA\u0026quot;,[\u0026quot;string\u0026quot;,\u0026quot;object\u0026quot;]],[\u0026quot;KIND\u0026quot;,[\u0026quot;string\u0026quot;,\u0026quot;object\u0026quot;]],[\u0026quot;RECORDS\u0026quot;,[\u0026quot;integer\u0026quot;,\u0026quot;int64\u0026quot;]],[\u0026quot;WEEKEND_RATIO\u0026quot;,[\u0026quot;string\u0026quot;,\u0026quot;object\u0026quot;]]]' data-show-filters='true' data-show-download='false' data-show-search='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'\u003E\u003C/marimo-table\u003E\u003C/marimo-ui-element\u003E"}, "type": "data"}]}, {"code_hash": "43a8a93ad5ed53c0d2671fedf3598c23", "console": [], "id": "SFPL", "outputs": [{"data": {"text/markdown": "\u003Cspan class=\"markdown prose dark:prose-invert contents\"\u003E\u003Ch2 id=\"how-sure-resample-weeks-in-each-area\"\u003EHow Sure? Resample Weeks in Each Area\u003C/h2\u003E\n\u003Cspan class=\"paragraph\"\u003EThe public ratio in each area, with a 95% range as in notebook 01. Each area draws its own weeks, so the Monterey Bay range can differ by a hundredth from the one in notebook 01.\u003C/span\u003E\u003C/span\u003E"}, "type": "data"}]}, {"code_hash": "9b4100e04b12127c574d382da74c71a0", "console": [], "id": "BYtC", "outputs": [{"data": {"text/plain": ""}, "type": "data"}]}, {"code_hash": "54ed964bd1390e565d1aa6a9a44f356a", "console": [], "id": "RGSE", "outputs": [{"data": {"text/html": "\u003Cmarimo-ui-element object-id='RGSE-0' random-id='f623c9a3-b1fa-d5fd-9a7a-76291ef9769a'\u003E\u003Cmarimo-table data-initial-value='[]' data-label='null' data-data='\u0026quot;[{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;WA/BC\u0026#92;\u0026quot;,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.44\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_LOW\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.33\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_HIGH\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.55\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;OR\u0026#92;\u0026quot;,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.87\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_LOW\u0026#92;\u0026quot;:\u0026#92;\u0026quot;0.67\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_HIGH\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.16\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;N CA outside the bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.85\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_LOW\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.59\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_HIGH\u0026#92;\u0026quot;:\u0026#92;\u0026quot;2.18\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;Monterey Bay\u0026#92;\u0026quot;,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.52\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_LOW\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.42\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_HIGH\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.64\u0026#92;\u0026quot;},{\u0026#92;\u0026quot;AREA\u0026#92;\u0026quot;:\u0026#92;\u0026quot;S CA\u0026#92;\u0026quot;,\u0026#92;\u0026quot;WEEKEND_RATIO\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.83\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_LOW\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.68\u0026#92;\u0026quot;,\u0026#92;\u0026quot;RANGE_HIGH\u0026#92;\u0026quot;:\u0026#92;\u0026quot;1.99\u0026#92;\u0026quot;}]\u0026quot;' data-total-rows='5' data-total-columns='4' data-max-columns='50' data-banner-text='\u0026quot;\u0026quot;' data-pagination='false' data-page-size='50' data-field-types='[[\u0026quot;AREA\u0026quot;,[\u0026quot;string\u0026quot;,\u0026quot;object\u0026quot;]],[\u0026quot;WEEKEND_RATIO\u0026quot;,[\u0026quot;string\u0026quot;,\u0026quot;object\u0026quot;]],[\u0026quot;RANGE_LOW\u0026quot;,[\u0026quot;string\u0026quot;,\u0026quot;object\u0026quot;]],[\u0026quot;RANGE_HIGH\u0026quot;,[\u0026quot;string\u0026quot;,\u0026quot;object\u0026quot;]]]' data-show-filters='true' data-show-download='false' data-show-search='true' data-show-column-summaries='false' data-show-data-types='true' data-show-page-size-selector='false' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'\u003E\u003C/marimo-table\u003E\u003C/marimo-ui-element\u003E"}, "type": "data"}]}, {"code_hash": "8f96a021cc4c97120830de4718315d52", "console": [], "id": "Kclp", "outputs": [{"data": {"text/markdown": "\u003Cspan class=\"markdown prose dark:prose-invert contents\"\u003E\u003Ch2 id=\"result\"\u003EResult\u003C/h2\u003E\n\u003Cspan class=\"paragraph\"\u003EPublic sightings rise at weekends in \u003Cstrong\u003E4 of 5 areas\u003C/strong\u003E: a weekend day carries 1.44\u00d7 the public sightings of a\nmidweek day in Washington and British Columbia, 1.85\u00d7 in northern California outside the bay, 1.52\u00d7 in\nMonterey Bay and 1.83\u00d7 in southern California. Oregon, with the fewest public records, shows none: a weekend\nday carries 0.87\u00d7 the public sightings of a midweek day, and the 95% range (0.67 to 1.16) includes 1, no\ndifference at all.\u003C/span\u003E\u003C/span\u003E"}, "type": "data"}]}, {"code_hash": "f75c5fe6b67a768b13bebe2fdef00563", "console": [], "id": "emfo", "outputs": [{"data": {"text/markdown": "\u003Cspan class=\"markdown prose dark:prose-invert contents\"\u003E\u003Ch2 id=\"limits\"\u003ELimits\u003C/h2\u003E\n\u003Cul\u003E\n\u003Cli\u003EMonterey has an unusually large whale-watching fleet; this comparison only sketches the effect elsewhere.\u003C/li\u003E\n\u003Cli\u003EPuget Sound's main sighting network is not in the OBIS archive, so Washington's public records are\n  undercounted.\u003C/li\u003E\n\u003C/ul\u003E\u003C/span\u003E"}, "type": "data"}]}], "metadata": {"marimo_version": "0.25.1", "script_metadata_hash": null}, "version": "1"},
+            "runtimeConfig": null
+        }),
+        writable: false,
+        configurable: false,
+      });
+    </script>
+  
+<marimo-code hidden="">
+    import%20marimo%0A%0A__generated_with%20%3D%20%220.25.1%22%0Aapp%20%3D%20marimo.App(%0A%20%20%20%20width%3D%22medium%22%2C%0A%20%20%20%20app_title%3D%2206%20%C2%B7%20The%20Weekend%20Holds%20Along%20the%20Coast%22%2C%0A%20%20%20%20css_file%3D%22..%2Fsite.css%22%2C%0A%20%20%20%20html_head_file%3D%22..%2Fhead.html%22%2C%0A%20%20%20%20sql_output%3D%22pandas%22%2C%0A)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%0A%20%20%20%20return%20(mo%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%3Cheader%20class%3D%22wh-top%22%3E%3Ca%20class%3D%22wh-brand%22%20data-portfolio%3D%22home%22%3EBrandon%20Connely%3C%2Fa%3E%3Cnav%20class%3D%22wh-nav%22%3E%3Ca%20class%3D%22wh-btn%22%20href%3D%22..%2Findex.html%22%3EAll%20Notebooks%3C%2Fa%3E%3Ca%20class%3D%22wh-btn%22%20href%3D%2205_lockdown.html%22%3E%E2%86%90%20Previous%3A%2005%3C%2Fa%3E%3Ca%20class%3D%22wh-btn%20wh-case%22%20data-portfolio%3D%22case%22%3ECase%20Study%3C%2Fa%3E%3C%2Fnav%3E%3C%2Fheader%3E%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%3Cp%20class%3D%22wh-kicker%22%3ENotebook%2006%20of%2006%3C%2Fp%3E%0A%0A%20%20%20%20%23%20The%20Weekend%20Holds%20Along%20the%20Coast%0A%0A%20%20%20%20Monterey%20Bay%20has%20one%20busy%20whale-watching%20fleet.%20Does%20the%20weekend%20pattern%20show%20up%20along%20the%20rest%20of%20the%0A%20%20%20%20West%20Coast%20too%3F%20%60dim_location.area%60%20splits%20the%20box%20at%20Point%20Conception%20(34.45%20N)%2C%20the%20Oregon%20border%0A%20%20%20%20(42%20N)%20and%20the%20Columbia%20River%20(46.25%20N)%2C%20with%20Monterey%20Bay%20taken%20out%20of%20northern%20California.%20The%0A%20%20%20%20weekend%20ratio%20is%20the%20same%20as%20in%20notebook%2001.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_()%3A%0A%20%20%20%20%23%20One%20Snowflake%20session%20for%20the%20whole%20notebook%3A%20the%20warehouse%20that%20runs%20the%20queries%20and%20the%20schema%20dbt%20builds%0A%20%20%20%20%23%20the%20star%20in.%20Temporary%20views%20made%20in%20one%20cell%20stay%20visible%20to%20the%20cells%20after%20it.%0A%20%20%20%20import%20snowflake.connector%0A%0A%20%20%20%20snowflake_session%20%3D%20snowflake.connector.connect(%0A%20%20%20%20%20%20%20%20connection_name%3D%22whales%22%2C%20warehouse%3D%22WHALES_WH%22%2C%20database%3D%22WHALES%22%2C%20schema%3D%22MARTS%22%0A%20%20%20%20)%0A%20%20%20%20return%20(snowflake_session%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Weekend%20Ratio%20for%20Each%20Area%20and%20Kind%20of%20Source%0A%20%20%20%20Areas%20north%20to%20south%3B%20kinds%20with%20at%20least%20200%20records.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo%2C%20snowflake_session)%3A%0A%20%20%20%20ratio_by_area%20%3D%20mo.sql(%0A%20%20%20%20%20%20%20%20f%22%22%22%0A%20%20%20%20%20%20%20%20SELECT%0A%20%20%20%20%20%20%20%20%20%20%20%20dim_location.area%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20dim_dataset.kind%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20COUNT(*)%20AS%20records%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20ROUND(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20(COUNT_IF(dim_date.is_weekend)%20%2F%202)%20%2F%20NULLIF(COUNT_IF(dim_date.is_midweek)%20%2F%203%2C%200)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%202%0A%20%20%20%20%20%20%20%20%20%20%20%20)%20AS%20weekend_ratio%0A%20%20%20%20%20%20%20%20FROM%20fct_sighting%0A%20%20%20%20%20%20%20%20JOIN%20dim_location%20ON%20dim_location.location_key%20%3D%20fct_sighting.location_key%0A%20%20%20%20%20%20%20%20JOIN%20dim_date%20ON%20dim_date.date_key%20%3D%20fct_sighting.date_key%0A%20%20%20%20%20%20%20%20JOIN%20dim_dataset%20ON%20dim_dataset.dataset_key%20%3D%20fct_sighting.dataset_key%0A%20%20%20%20%20%20%20%20GROUP%20BY%20dim_location.area%2C%20dim_location.area_order%2C%20dim_dataset.kind%0A%20%20%20%20%20%20%20%20HAVING%20COUNT(*)%20%3E%3D%20200%0A%20%20%20%20%20%20%20%20ORDER%20BY%20dim_location.area_order%2C%20dim_dataset.kind%0A%20%20%20%20%20%20%20%20%22%22%22%2C%0A%20%20%20%20%20%20%20%20engine%3Dsnowflake_session%2C%0A%20%20%20%20%20%20%20%20output%3DFalse%2C%0A%20%20%20%20)%0A%20%20%20%20return%20(ratio_by_area%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo%2C%20ratio_by_area)%3A%0A%20%20%20%20mo.ui.table(ratio_by_area%2C%20page_size%3D50%2C%20selection%3DNone%2C%20show_download%3DFalse)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20How%20Sure%3F%20Resample%20Weeks%20in%20Each%20Area%0A%20%20%20%20The%20public%20ratio%20in%20each%20area%2C%20with%20a%2095%25%20range%20as%20in%20notebook%2001.%20Each%20area%20draws%20its%20own%20weeks%2C%20so%20the%20Monterey%20Bay%20range%20can%20differ%20by%20a%20hundredth%20from%20the%20one%20in%20notebook%2001.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo%2C%20snowflake_session)%3A%0A%20%20%20%20area_resample%20%3D%20mo.sql(%0A%20%20%20%20%20%20%20%20f%22%22%22%0A%20%20%20%20%20%20%20%20WITH%20weekly_counts%20AS%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20SELECT%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dim_location.area%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20dim_location.area_order%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20DATEADD(DAY%2C%201%20-%20dim_date.weekday_number%2C%20dim_date.date)%20AS%20week_start%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20COUNT_IF(dim_date.is_weekend)%20AS%20weekend_records%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20COUNT_IF(dim_date.is_midweek)%20AS%20midweek_records%0A%20%20%20%20%20%20%20%20%20%20%20%20FROM%20fct_sighting%0A%20%20%20%20%20%20%20%20%20%20%20%20JOIN%20dim_location%20ON%20dim_location.location_key%20%3D%20fct_sighting.location_key%0A%20%20%20%20%20%20%20%20%20%20%20%20JOIN%20dim_date%20ON%20dim_date.date_key%20%3D%20fct_sighting.date_key%0A%20%20%20%20%20%20%20%20%20%20%20%20JOIN%20dim_dataset%20ON%20dim_dataset.dataset_key%20%3D%20fct_sighting.dataset_key%0A%20%20%20%20%20%20%20%20%20%20%20%20WHERE%20dim_dataset.kind%20%3D%20'public'%0A%20%20%20%20%20%20%20%20%20%20%20%20GROUP%20BY%20dim_location.area%2C%20dim_location.area_order%2C%20week_start%0A%20%20%20%20%20%20%20%20)%2C%0A%0A%20%20%20%20%20%20%20%20numbered_weeks%20AS%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20SELECT%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20area%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20area_order%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ROW_NUMBER()%20OVER%20(PARTITION%20BY%20area%20ORDER%20BY%20week_start)%20AS%20week_number%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20COUNT(*)%20OVER%20(PARTITION%20BY%20area)%20AS%20total_weeks%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20weekend_records%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20midweek_records%0A%20%20%20%20%20%20%20%20%20%20%20%20FROM%20weekly_counts%0A%20%20%20%20%20%20%20%20)%2C%0A%0A%20%20%20%20%20%20%20%20replicates%20AS%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20SELECT%20SEQ4()%20AS%20replicate%0A%20%20%20%20%20%20%20%20%20%20%20%20FROM%20TABLE(GENERATOR(ROWCOUNT%20%3D%3E%202000))%0A%20%20%20%20%20%20%20%20)%2C%0A%0A%20%20%20%20%20%20%20%20--%20In%20each%20area%2C%20each%20replicate%20draws%20as%20many%20weeks%20as%20the%20area%20has%2C%0A%20%20%20%20%20%20%20%20--%20at%20random%20and%20with%20replacement.%0A%20%20%20%20%20%20%20%20resample_draws%20AS%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20SELECT%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20replicates.replicate%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20numbered_weeks.area%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%201%20%2B%20MOD(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ABS(HASH(replicates.replicate%2C%20numbered_weeks.area%2C%20numbered_weeks.week_number%2C%2020261016))%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20numbered_weeks.total_weeks%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20)%20AS%20week_number%0A%20%20%20%20%20%20%20%20%20%20%20%20FROM%20replicates%0A%20%20%20%20%20%20%20%20%20%20%20%20CROSS%20JOIN%20numbered_weeks%0A%20%20%20%20%20%20%20%20)%2C%0A%0A%20%20%20%20%20%20%20%20resampled_ratios%20AS%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20SELECT%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20resample_draws.area%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20resample_draws.replicate%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20(SUM(numbered_weeks.weekend_records)%20%2F%202)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%20NULLIF(SUM(numbered_weeks.midweek_records)%20%2F%203%2C%200)%20AS%20weekend_ratio%0A%20%20%20%20%20%20%20%20%20%20%20%20FROM%20resample_draws%0A%20%20%20%20%20%20%20%20%20%20%20%20JOIN%20numbered_weeks%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20ON%20numbered_weeks.area%20%3D%20resample_draws.area%0A%20%20%20%20%20%20%20%20%20%20%20%20%20AND%20numbered_weeks.week_number%20%3D%20resample_draws.week_number%0A%20%20%20%20%20%20%20%20%20%20%20%20GROUP%20BY%20resample_draws.area%2C%20resample_draws.replicate%0A%20%20%20%20%20%20%20%20)%2C%0A%0A%20%20%20%20%20%20%20%20observed_ratios%20AS%20(%0A%20%20%20%20%20%20%20%20%20%20%20%20SELECT%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20area%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20ANY_VALUE(area_order)%20AS%20area_order%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20(SUM(weekend_records)%20%2F%202)%20%2F%20NULLIF(SUM(midweek_records)%20%2F%203%2C%200)%20AS%20weekend_ratio%0A%20%20%20%20%20%20%20%20%20%20%20%20FROM%20numbered_weeks%0A%20%20%20%20%20%20%20%20%20%20%20%20GROUP%20BY%20area%0A%20%20%20%20%20%20%20%20)%0A%0A%20%20%20%20%20%20%20%20SELECT%0A%20%20%20%20%20%20%20%20%20%20%20%20observed_ratios.area%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20ROUND(observed_ratios.weekend_ratio%2C%202)%20AS%20weekend_ratio%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20ROUND(PERCENTILE_CONT(0.025)%20WITHIN%20GROUP%20(ORDER%20BY%20resampled_ratios.weekend_ratio)%2C%202)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20AS%20range_low%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20ROUND(PERCENTILE_CONT(0.975)%20WITHIN%20GROUP%20(ORDER%20BY%20resampled_ratios.weekend_ratio)%2C%202)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20AS%20range_high%0A%20%20%20%20%20%20%20%20FROM%20observed_ratios%0A%20%20%20%20%20%20%20%20JOIN%20resampled_ratios%20ON%20resampled_ratios.area%20%3D%20observed_ratios.area%0A%20%20%20%20%20%20%20%20GROUP%20BY%20observed_ratios.area%2C%20observed_ratios.area_order%2C%20observed_ratios.weekend_ratio%0A%20%20%20%20%20%20%20%20ORDER%20BY%20observed_ratios.area_order%0A%20%20%20%20%20%20%20%20%22%22%22%2C%0A%20%20%20%20%20%20%20%20engine%3Dsnowflake_session%2C%0A%20%20%20%20%20%20%20%20output%3DFalse%2C%0A%20%20%20%20)%0A%20%20%20%20return%20(area_resample%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(area_resample%2C%20mo)%3A%0A%20%20%20%20mo.ui.table(area_resample%2C%20page_size%3D50%2C%20selection%3DNone%2C%20show_download%3DFalse)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Result%0A%20%20%20%20Public%20sightings%20rise%20at%20weekends%20in%20**4%20of%205%20areas**%3A%20a%20weekend%20day%20carries%201.44%C3%97%20the%20public%20sightings%20of%20a%0A%20%20%20%20midweek%20day%20in%20Washington%20and%20British%20Columbia%2C%201.85%C3%97%20in%20northern%20California%20outside%20the%20bay%2C%201.52%C3%97%20in%0A%20%20%20%20Monterey%20Bay%20and%201.83%C3%97%20in%20southern%20California.%20Oregon%2C%20with%20the%20fewest%20public%20records%2C%20shows%20none%3A%20a%20weekend%0A%20%20%20%20day%20carries%200.87%C3%97%20the%20public%20sightings%20of%20a%20midweek%20day%2C%20and%20the%2095%25%20range%20(0.67%20to%201.16)%20includes%201%2C%20no%0A%20%20%20%20difference%20at%20all.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Limits%0A%20%20%20%20*%20Monterey%20has%20an%20unusually%20large%20whale-watching%20fleet%3B%20this%20comparison%20only%20sketches%20the%20effect%20elsewhere.%0A%20%20%20%20*%20Puget%20Sound's%20main%20sighting%20network%20is%20not%20in%20the%20OBIS%20archive%2C%20so%20Washington's%20public%20records%20are%0A%20%20%20%20%20%20undercounted.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A
+</marimo-code>
+
+<marimo-code-hash hidden="">36d7346bd18f16d3d6fa49c6a948f693</marimo-code-hash>
+</body>
+</html>

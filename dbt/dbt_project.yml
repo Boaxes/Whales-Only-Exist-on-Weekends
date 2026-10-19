@@ -1,0 +1,39 @@
+name: whales
+version: 1.0.0
+profile: whales
+
+vars:
+  # Monterey Bay box. Edges are excluded, as the OBIS API's polygon excludes them.
+  bay_lat: [36.4, 37.1]
+  bay_lon: [-122.6, -121.7]
+  # First and last day SanctSound's Monterey Bay hydrophones report a detection.
+  hydrophone_window: ['2018-11-15', '2021-06-12']
+
+models:
+  whales:
+    marts:
+      +schema: marts
+      +materialized: table
+
+seeds:
+  whales:
+    +schema: raw
+    dataset_kind:
+      +column_types:
+        dataset_id: varchar
+        title: varchar
+        kind: varchar
+        note: varchar
+    harbors:
+      +column_types:
+        harbor: varchar
+        latitude: float
+        longitude: float
+    species_names:
+      +column_types:
+        taxon: varchar
+        common_name: varchar
+    holidays:
+      +column_types:
+        holiday_date: date
+        name: varchar

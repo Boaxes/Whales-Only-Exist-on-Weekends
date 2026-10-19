@@ -1,0 +1,166 @@
+/* The notebook pages, in the style of brandonconnely.com (src/site/site.css there): the page is the water, the
+   top bar sits on it, and the notebook is one cream panel with an ink line and a hard shadow. marimo draws each
+   cell as its own block, so the panel is drawn on the cells: the first cell (the top bar) sits on the water, and
+   the cells after it join into one panel. */
+:root {
+  --wh-bg: #0a2c33;
+  --wh-cream: #fbf5e6;
+  --wh-sand: #f1e6c8;
+  --wh-ink: #1d2b2f;
+  --wh-ink-2: #3c4d51;
+  --wh-teal: #1f7d7a;
+  --wh-red: #d71920;
+  --wh-shadow: #062228;
+  --wh-display: 'Fraunces', Georgia, serif;
+  --wh-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wh-mono: 'Space Mono', 'Courier New', monospace;
+  /* marimo's own font and width settings */
+  --text-font: var(--wh-body);
+  --heading-font: var(--wh-display);
+  --monospace-font: var(--wh-mono);
+  --content-width-medium: 1120px;
+}
+html, body { background: var(--wh-bg) !important; }
+#App {
+  background-color: var(--wh-bg) !important;
+  background-image: linear-gradient(180deg, #3c948b 0, #277176 420px, #175a63 1100px, #0f4049 2000px, var(--wh-bg) 100%) !important;
+  background-attachment: local !important;
+  color: var(--wh-ink);
+  font: 400 18px/1.6 var(--wh-body);
+  overflow-x: hidden !important;
+}
+
+/* marimo's space above the first cell: the top bar sits where the portfolio's does */
+#App > div[class*="pt-8"] { padding-top: 0 !important; }
+
+/* ---------- the panel, drawn on the cells ---------- */
+#App .flex.flex-col.gap-5:has(> .marimo-cell) { gap: 0; padding: 26px 0 40px; }
+#App .marimo-cell {
+  margin: 0; padding: 10px 50px; background: var(--wh-cream) !important;
+  border: 0 solid var(--wh-ink) !important; border-left-width: 2.5px !important; border-right-width: 2.5px !important; border-radius: 0;
+  box-shadow: 7px 7px 0 var(--wh-shadow);
+}
+#App .marimo-cell > div:not(.tray) { border: 0 !important; }
+#App .marimo-cell:nth-child(2) { padding-top: 46px; border-top-width: 2.5px !important; border-radius: 18px 18px 0 0; }
+#App .marimo-cell:last-child { padding-bottom: 46px; border-bottom-width: 2.5px !important; border-radius: 0 0 18px 18px; }
+#App .marimo-cell:first-child {
+  margin-bottom: 40px; padding: 0; background: transparent !important; border-width: 0 !important; box-shadow: none;
+}
+#App .marimo-cell:first-child [id^="output-"] { padding-left: 0; padding-right: 0; overflow: visible; }
+/* the loading screen, before the notebook appears */
+#root > div:not(:has(#App)) { color: var(--wh-cream); }
+#App .marimo-cell .output-area, #App .marimo-cell .output { max-width: 100%; }
+
+/* ---------- the top bar ---------- */
+.wh-top { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; }
+.wh-brand {
+  margin-right: auto; color: var(--wh-cream) !important; text-decoration: none !important;
+  font: 900 34px/1 var(--wh-display); font-variation-settings: 'SOFT' 100, 'WONK' 1; letter-spacing: -0.01em;
+  text-shadow: 3px 3px 0 var(--wh-shadow);
+}
+.wh-nav { display: flex; flex-wrap: wrap; gap: 12px; }
+.wh-btn {
+  display: inline-flex; align-items: center; gap: 8px; box-sizing: border-box; padding: 10px 14px;
+  font: 700 12.5px/1.2 var(--wh-mono) !important; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none !important;
+  color: var(--wh-ink) !important; background: var(--wh-cream); border: 2px solid var(--wh-ink); border-radius: 6px;
+  box-shadow: 3px 3px 0 var(--wh-ink); transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+.wh-btn:hover { background: #fff; transform: rotate(var(--tilt, 0deg)) translate(-1px, -2px); box-shadow: 4px 5px 0 var(--wh-ink); }
+.wh-btn:active { transform: rotate(var(--tilt, 0deg)) translate(2px, 2px); box-shadow: 1px 1px 0 var(--wh-ink); }
+.wh-btn:focus-visible { outline: 3px solid var(--wh-red); outline-offset: 3px; }
+.wh-nav .wh-btn:nth-child(1) { --tilt: -1.2deg; }
+.wh-nav .wh-btn:nth-child(2) { --tilt: 0.8deg; }
+.wh-nav .wh-btn:nth-child(3) { --tilt: -0.6deg; }
+.wh-nav .wh-btn:nth-child(4) { --tilt: 1.1deg; }
+.wh-btn.wh-case { color: #fff !important; background: var(--wh-red); }
+.wh-btn.wh-case:hover { background: #e5342b; }
+
+/* ---------- text ---------- */
+#App .marimo-cell .markdown { font-family: var(--wh-body); font-size: 18px; line-height: 1.6; color: var(--wh-ink); max-width: none; }
+#App .marimo-cell .markdown p, #App .marimo-cell .markdown li, #App .marimo-cell .markdown .paragraph { color: var(--wh-ink); }
+#App .marimo-cell .markdown h1, #App .marimo-cell .markdown h2, #App .marimo-cell .markdown h3 {
+  font-family: var(--wh-display); font-variation-settings: 'SOFT' 100, 'WONK' 1; color: var(--wh-ink); letter-spacing: -0.015em;
+}
+#App .marimo-cell .markdown h1 { margin: 0 0 0.55em; font-size: clamp(36px, 5.6vw, 62px); font-weight: 900; line-height: 1.03; }
+#App .marimo-cell .markdown h2 {
+  margin: 0.9em 0 0.45em; padding: 0; border: 0; background: none;
+  font-size: clamp(25px, 3.4vw, 34px); font-weight: 800; line-height: 1.12;
+}
+#App .marimo-cell .markdown a { color: var(--wh-teal); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+#App .marimo-cell .markdown a.wh-btn, #App .marimo-cell .markdown a.wh-brand { text-decoration: none; }
+#App .marimo-cell .markdown strong { color: var(--wh-ink); font-weight: 700; }
+#App .marimo-cell .markdown em { color: var(--wh-ink); }
+#App .marimo-cell .markdown li::marker { color: var(--wh-red); font-weight: 700; }
+#App .marimo-cell .markdown code {
+  padding: 1px 6px; font-family: var(--wh-mono); font-size: 0.82em; font-weight: 400; color: var(--wh-ink);
+  background: var(--wh-sand); border: 1.5px solid rgba(29, 43, 47, 0.25); border-radius: 5px;
+}
+#App .marimo-cell .markdown code::before, #App .marimo-cell .markdown code::after { content: none; }
+.wh-kicker {
+  display: inline-block; margin: 0 0 22px !important; padding: 7px 10px 6px; transform: rotate(-2deg);
+  font: 700 12.5px/1 var(--wh-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--wh-cream) !important; background: var(--wh-teal); border: 2px solid var(--wh-ink); border-radius: 6px;
+}
+
+/* ---------- code: on slate, like the portfolio's code blocks ---------- */
+#App .marimo-cell .tray {
+  margin: 4px 0 12px; padding: 12px 6px 8px; background: var(--wh-ink) !important;
+  border: 2.5px solid var(--wh-ink); border-radius: 12px; box-shadow: 4px 4px 0 var(--wh-shadow);
+}
+#App .marimo-cell .tray > div { padding-bottom: 0; }
+#App .cm-editor, #App .cm-editor .cm-scroller, #App .cm-editor .cm-gutters { background: transparent !important; }
+/* one font, size and line height for the whole editor, set on the scroller and inherited by every part */
+#App .cm-editor .cm-scroller { font: 400 13.5px/1.6 var(--wh-mono) !important; }
+#App .cm-editor .cm-content, #App .cm-editor .cm-line, #App .cm-editor .cm-gutters, #App .cm-editor .cm-gutterElement {
+  font: inherit !important; line-height: inherit !important;
+}
+/* Line numbers are drawn on each line rather than in CodeMirror's gutter. The gutter sizes its numbers from
+   CodeMirror's estimate of each line's height, and an editor that has not yet scrolled into view keeps a wrong
+   estimate, so its numbers drifted away from the code. A number drawn on its own line cannot drift. */
+#App .cm-editor .cm-gutters { display: none !important; }
+#App .cm-editor .cm-content { counter-reset: wh-line; padding-left: 3.3em !important; }
+#App .cm-editor .cm-line { position: relative; counter-increment: wh-line; }
+#App .cm-editor .cm-line::before {
+  content: counter(wh-line); position: absolute; left: -3.3em; width: 2.3em; text-align: right;
+  color: #6f8a8c; font-style: normal; font-weight: 400; pointer-events: none; user-select: none;
+}
+#App .cm-editor .cm-content, #App .cm-editor .cm-content span { color: var(--wh-cream); }
+/* long lines scroll sideways inside the block, as the portfolio's code blocks do, rather than wrap */
+#App .cm-editor .cm-content.cm-lineWrapping { white-space: pre !important; overflow-wrap: normal !important; word-break: normal !important; }
+#App .cm-editor .cm-scroller { overflow-x: auto !important; scrollbar-color: #4f8a8c var(--wh-ink); }
+#App .cm-editor .cm-activeLine, #App .cm-editor .cm-activeLineGutter { background: transparent; }
+#App .cm-editor .cm-selectionBackground, #App .cm-editor ::selection { background: rgba(156, 195, 189, 0.35) !important; }
+#App .cm-editor .cm-cursor { border-left-color: var(--wh-cream); }
+#App .marimo-cell .tray .hover-action button { color: var(--wh-cream) !important; background: var(--wh-ink) !important; border-color: rgba(251, 245, 230, 0.35) !important; }
+
+/* ---------- outputs ---------- */
+/* marimo's data tables (this stylesheet is shared into each table's shadow root, so these rules apply there) */
+.rounded-md.border.overflow-hidden:has(table) { background: #fff; border: 2px solid var(--wh-ink) !important; border-radius: 10px; box-shadow: 4px 4px 0 var(--wh-ink); }
+.rounded-md.border.overflow-hidden:has(table) > .border-b { border-color: var(--wh-ink) !important; background: var(--wh-cream); }
+table.caption-bottom thead.bg-background, table.caption-bottom thead tr.bg-background { background: var(--wh-sand) !important; }
+table.caption-bottom thead th { color: var(--wh-ink) !important; font-family: var(--wh-mono); border-bottom: 2px solid var(--wh-ink); }
+table.caption-bottom tbody tr { border-color: rgba(29, 43, 47, 0.18) !important; }
+table.caption-bottom tbody tr.bg-background { background: #fff !important; }
+table.caption-bottom tbody td { font-family: var(--wh-mono); font-size: 13px; color: var(--wh-ink); }
+
+/* ---------- small screens ---------- */
+@media (max-width: 760px) {
+  #App > div[class*="px-1"] { padding-left: 16px !important; padding-right: 23px !important; }
+  #App .marimo-cell .absolute.-right-9 { display: none; }
+  #App .marimo-cell { box-shadow: 5px 5px 0 var(--wh-shadow); }
+  #App .marimo-cell:nth-child(2) { padding-top: 28px; border-radius: 14px 14px 0 0; }
+  #App .marimo-cell:last-child { padding-bottom: 28px; border-radius: 0 0 14px 14px; }
+  #App .marimo-cell .markdown { font-size: 16.5px; }
+  .wh-brand { font-size: 26px; }
+  .wh-nav { width: 100%; gap: 9px; }
+  .wh-btn { padding: 9px 10px; font-size: 11.5px !important; }
+  #App .cm-editor .cm-scroller { font-size: 12px !important; }
+  #App .marimo-cell { padding: 8px 14px; }
+  #App .marimo-cell [data-cell-role="output"] { padding-left: 0; padding-right: 0; }
+  #App .marimo-cell .markdown h1 { font-size: 34px; }
+}
+
+
+/* the result tables come from cells with their code hidden: marimo would still draw an empty code bar above each */
+#App .marimo-cell .tray:has(.cm.opacity-20) { display: none; }

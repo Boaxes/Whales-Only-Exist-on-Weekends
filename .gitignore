@@ -1,0 +1,14 @@
+# data and credentials never go in the repo
+.env
+profiles.yml
+.venv/
+__pycache__/
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+
+# marimo run caches
+__marimo__/
+
+# the marimo notebooks, written and exported by analysis/notebooks_src/build.py
+analysis/notebooks_src/build/

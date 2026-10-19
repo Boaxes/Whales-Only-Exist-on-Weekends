@@ -1,0 +1,118 @@
+dataset_id,title,kind,note
+04b9b456-af23-43e7-8125-20a13df77c48,Aerial Oil Spill Response Survey 1994-1997,survey,State aerial survey programme for oil spill response
+1e3ba2fc-7d13-4a24-8619-e94b243f9d2d,CAS Mammalogy (MAM),other,Museum specimens
+51391fb1-ae4d-44d8-9178-a06f95545604,CWS-EC Eastern Canada Seabirds at Sea (ECSAS),survey,"Seabird observers on ships at sea, recording cetaceans too"
+80072f3d-ca05-4982-8d35-37a998ababdb,CalCOFI October 2022 Vertebrate eDNA,other,"eDNA water samples, not sightings"
+d054afae-bb0c-484e-8658-d92b41ff9d7d,"CalCOFI and NMFS Seabird and Marine Mammal Observation Data, 1987-2006",survey,Observers on CalCOFI cruises over a fixed station grid
+0b8facff-924a-449b-bfbc-f3ea52d47cc9,CalCOFI marine mammal surveys 2004-2008 - off effort,survey,Observers on CalCOFI cruises over a fixed station grid
+5deec06a-c0f4-4e07-a4c7-85bc124dbaed,CalCOFI marine mammal surveys 2004-2008 - on effort,survey,Observers on CalCOFI cruises over a fixed station grid
+cec21074-052e-4e1c-99b1-e56ec8d5c0ae,"Cascadia Research Blue Whale Photo IDs for US West Coast, 1972-2004",other,"Research photo-ID from small boats; effort follows the researchers, not a set design"
+56b7611b-42c2-43d2-b0ed-8cc7c5c5db37,Cuvier's Beaked Whale and Fin Whale Surveys at the Southern California Offshore Anti-submarine Warfare Range (SOAR),survey,U.S. Navy-funded marine mammal monitoring survey
+345c1b88-2bab-4403-ad2c-1733c0b0a3dd,DFO Maritimes Region Cetacean Sightings,other,"Sightings database mixing surveys, ferries, whale-watching and public reports"
+65a2c0ef-574f-49a1-a5af-77dd32f7cf98,"False killer whale (Pseudorca crassidens) location data from a satellite telemetry tag (ptt id 85590) deployed in the Hawaiian Islands Humpback Whale National Marine Sanctuary, and the North Pacific Ocean from 2008-07-17 to 2008-10-01, deployment id 573a577b14a4da4e6931f1a1",other,Satellite telemetry tag positions
+5de439e1-5fc1-4570-8c36-ac3e3b2c20fd,Galiano Island BC Canada Marine Zoology 1893–2021,other,"Compilation of museum, literature and public sighting-network records"
+1899b433-f6e2-40e4-827c-94d6f59785d3,"Gray Whales Count annual survey of northbound migration in Santa Barbara Channel, California 2011-2012",other,Volunteer counters on a fixed daily shore watch through the migration season
+b3746871-cda0-4b4b-8b7c-76a88eaeeae0,Gray whale Infrared blow detections from shore 2015,other,Shore-based infrared camera; blow detections
+b855f876-36b4-4f3d-992e-7425750121e2,Gray whale localized acoustic detections in Granite Canyon 2014-2015,hydrophone,Hydrophone array at Granite Canyon; localized call detections
+e7725a54-a90d-4c2a-84da-4bf3b7574e76,Gray whale visual sightings from shore 2014-2015,other,NOAA shore census at Granite Canyon on a fixed watch schedule
+cbeb596a-613c-4449-a09e-f9a7ea091436,Gulf of Maine humpback whale satellite tagging project: 2012 (aggregated per 1-degree cell),other,"Satellite telemetry tag positions, aggregated to 1-degree cells"
+4d6e4425-ca39-42b6-ad14-0a928c30e8f4,Happywhale - Baird's beaked whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+6df306da-31d0-47f5-bb1b-4b084d03d7f1,Happywhale - Blue whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+fecb2219-2c7d-4324-8a13-e95fe552a743,Happywhale - Bryde's whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+86ffd903-47fc-435e-a42e-f3aec79c2d03,Happywhale - Common bottlenose dolphin in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+093e83be-3532-4352-a18f-d56aebc1602a,Happywhale - Common minke whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+dbc383d9-e903-4ef3-93e8-01912126351f,Happywhale - Cuvier's beaked whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+b39b3b38-6dc2-400f-b177-51b98035bcb4,Happywhale - Dall's porpoise in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+742abe79-3fbd-49a1-b5f5-f0934ec6801b,Happywhale - Dwarf sperm whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+60f8c854-017a-45c9-81f9-8c8cc95ad116,Happywhale - False killer whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+cd94ac49-d8f6-4a50-a3ea-82dd8183c154,Happywhale - Fin whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+e31406eb-bf39-4993-a9a1-51cfe39da569,Happywhale - Gray whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+e7ecd40e-311c-4cc6-800a-235dc8e31fd1,Happywhale - Harbor porpoise in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+fcbb56da-7237-43a3-831e-d45571496c68,Happywhale - Humpback whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+fefcba02-f27c-448e-8038-e4a5e0bd51d7,Happywhale - Killer whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+da433612-e245-4736-8d9a-ddc00693eb1f,Happywhale - Northern right whale dolphin in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+ff91dc4c-b725-45d9-9bfa-f046b36a9f0b,Happywhale - Pacific white-sided dolphin in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+19b17aa1-83e9-4121-bd1b-e21966acdd0d,Happywhale - Risso's dolphin in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+675bd2af-d797-467f-8fac-25f1b8e3b233,Happywhale - Sei whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+761fb84e-e185-45b6-a4f3-6a6c5dad8afe,Happywhale - Short-beaked common dolphin in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+79eafe98-b6b8-48c7-9d10-1204044ad239,Happywhale - Sperm whale in North Pacific Ocean,public,"Photo submissions to Happywhale, mostly from the public and whale-watching trips"
+a9848680-b804-455a-b6b5-2c5c1d0dbcde,Historical distribution of whales shown by logbook records 1785-1913,other,Historical whaling logbook positions
+04ebe0bf-42cf-4ebe-85ab-bc2ede3c720c,"Invertebrate Collections made by R/V Velero III, IV, Atlantic, and Hubbs",other,Museum collection from research voyages
+60ce413e-2d58-4d64-a057-7eed1b201250,Lamont-Doherty/LGL/NSF cruises,other,Protected-species observers on seismic cruises; effort follows the seismic work
+76187bd3-740d-4000-b466-b9793e5d7cbb,"MMS Aerial Survey, PNW 1989-1990",survey,Minerals Management Service aerial or ship survey on set transects
+01e6c76e-cdd1-4da3-b3e1-861ea4bad3ed,MMS High Altitude Survey 1980-1983,survey,Minerals Management Service aerial or ship survey on set transects
+556edf76-3ef9-49fc-af91-bbcfe5f0da8f,"MMS High Altitude Survey, SCB 1975-1978",survey,Minerals Management Service aerial or ship survey on set transects
+50b1b06d-f311-43f2-ad72-c7f05a9c1771,MMS Low Altitude Survey 1980-1983,survey,Minerals Management Service aerial or ship survey on set transects
+4ec2c3e5-b836-4d57-9f53-1364bf985d01,"MMS Low Altitude Survey for Mammals, Southern California Bight 1975-1978",survey,Minerals Management Service aerial or ship survey on set transects
+1a502495-ab12-4570-9ade-3579c5111ead,"MMS Marine Mammal Survey, PNW 1989-1990",survey,Minerals Management Service aerial or ship survey on set transects
+878eeaa7-0f16-4a4f-ad06-4c5533c2d470,MMS Seabird Ecology Study 1985,survey,Minerals Management Service aerial or ship survey on set transects
+e1a0a99c-71bf-4e59-908b-ceb442d9efbf,"MMS Ship Survey, PNW 1989",survey,Minerals Management Service aerial or ship survey on set transects
+926a4586-de33-424a-b2b2-cdc9e7c108c0,"MMS Ship survey, SCB 1975-1978",survey,Minerals Management Service aerial or ship survey on set transects
+0dd40113-e298-443a-961c-239d2f58a1cb,"MMS Surveys, SCB 1995-1997",survey,Minerals Management Service aerial or ship survey on set transects
+71c2c816-7e94-40b9-8e28-8172d9c5fefb,NOAA Ocean Exploration seawater eDNA metabarcoding (EX2301),other,"eDNA water samples, not sightings"
+d6ba0ad4-6a38-415f-8fb2-72337b675f38,NWTRC Aerial Surveys in Puget Sound in 2016,survey,U.S. Navy-funded marine mammal monitoring survey
+0e80dc63-b47c-423a-8e34-362f3171ea18,NWTRC JP02 Marine Mammal Aerial Surveys in the Puget Sound 2013,survey,U.S. Navy-funded marine mammal monitoring survey
+2c88fa97-db06-4669-b0dc-9690eba73a93,NWTRC JP04 Aerial Surveys 2014-2015,survey,U.S. Navy-funded marine mammal monitoring survey
+9dbcdf1e-debc-4933-9388-ee316b48fa42,NWTRC Small Vessel-based Surveys in 2016 and 2018,survey,Navy-funded small-vessel surveys for Southern Resident killer whales
+9d629feb-ba03-4a83-908c-794d94d30531,Ocean Genome Legacy Collection,other,Genome bank specimen
+be13af86-1011-426c-964d-479616273ed6,"PIFSC & SWFSC, Cetacean Survey, HICEAS 2010, Cruise 1641, NOAA Pacific Islands Fisheries Science Center",survey,NOAA line-transect cruise on a set track
+3eaad22a-f8e4-45d8-85e3-63cfe51fe164,"PIFSC & SWFSC, Cetacean Survey, HICEAS 2017, Cruise 1705/1706, NOAA Pacific Islands Fisheries Science Center",survey,NOAA line-transect cruise on a set track
+9a37fc55-1fc8-4c19-b649-10d86c03b7bb,PIROP Northwest Atlantic 1965-1992,survey,"Seabird observers on ships at sea, recording cetaceans too"
+419f84d6-c6b5-4fd4-82ee-099dc2a92788,SOCAL FZN4 Marine Mammal Aerial Monitoring 2013,survey,U.S. Navy-funded marine mammal monitoring survey
+bb5a2484-c172-4b14-bf6e-af27db495ce1,"SOCAL KB04, FZN1, FZN2 Marine Mammal Aerial Monitoring 2011-2012",survey,U.S. Navy-funded marine mammal monitoring survey
+4615f91d-c382-4c81-aa2d-44b0ee64088a,SOCAL Marine Mammal Aerial Monitoring 2008-2009,survey,U.S. Navy-funded marine mammal monitoring survey
+43331c6e-2243-4768-88e0-a7be0d742eb6,SOCAL Marine Mammal Aerial Monitoring 2010,survey,U.S. Navy-funded marine mammal monitoring survey
+2b946355-6f27-49b9-896d-c9b3a3157f7d,SOCAL XE31 UNDET Vessel Surveys May 2014,survey,U.S. Navy-funded marine mammal monitoring survey
+d336561d-87fa-484e-95ec-385078233bf3,"SWFSC Marine Mammal Survey, CAMMS 1991, Cruise 1426",survey,NOAA line-transect cruise on a set track
+5f4b561e-5ca8-491c-8452-0588109caf1b,"SWFSC Marine Mammal Survey, CCES 2018, Cruise 1651",survey,NOAA line-transect cruise on a set track
+1dc828ac-d522-4ebf-97c3-e5a521b4509c,"SWFSC Marine Mammal Survey, CLAWS 2015, Cruise 1648",survey,NOAA line-transect cruise on a set track
+ba71e4ee-91dc-4bbd-9a79-017330e4553f,"SWFSC Marine Mammal Survey, CSCAPE 2005, Cruise 1627",survey,NOAA line-transect cruise on a set track
+9ead3b9e-8431-4132-be7e-cc5c3d24b64d,"SWFSC Marine Mammal Survey, CSCAPE 2005, Cruise 1628",survey,NOAA line-transect cruise on a set track
+3bdc91b7-35a8-4e7f-9707-5a5b86ae88f9,"SWFSC Marine Mammal Survey, CalCurCEAS 2014, Cruise 1647",survey,NOAA line-transect cruise on a set track
+515b3516-7f86-42d7-a439-bd29411c9eea,"SWFSC Marine Mammal Survey, Delphinus 2009, Cruise 1640",survey,NOAA line-transect cruise on a set track
+1b5c74ae-fdc2-4e98-804a-196ad3975100,"SWFSC Marine Mammal Survey, MOPS 1986, Cruise 0989",survey,NOAA line-transect cruise on a set track
+e9380dae-ecde-4e00-b780-45d3850ae7aa,"SWFSC Marine Mammal Survey, MOPS 1987, Cruise 1080",survey,NOAA line-transect cruise on a set track
+7707309d-37c4-4bd9-ac24-361aa328256c,"SWFSC Marine Mammal Survey, MOPS 1987, Cruise 1081",survey,NOAA line-transect cruise on a set track
+5eaee866-0aa3-40c4-bf5f-a09e04f9d1f7,"SWFSC Marine Mammal Survey, ORCAWALE 1996, Cruise 1604",survey,NOAA line-transect cruise on a set track
+c8f6acf8-cfc4-42f1-86c3-adb8ce0e1fd5,"SWFSC Marine Mammal Survey, ORCAWALE 1996, Cruise 1605",survey,NOAA line-transect cruise on a set track
+23a662e6-5fdb-4b04-b2b5-dc142be6b250,"SWFSC Marine Mammal Survey, ORCAWALE 2001, Cruise 1617",survey,NOAA line-transect cruise on a set track
+01f7b0b2-2d05-4ed3-8aef-dc6d0ac40388,"SWFSC Marine Mammal Survey, ORCAWALE 2001, Cruise 1619",survey,NOAA line-transect cruise on a set track
+c43ed461-2b8c-4f6a-9a17-8cc8254db5e1,"SWFSC Marine Mammal Survey, ORCAWALE 2008, Cruise 1635",survey,NOAA line-transect cruise on a set track
+1618ada2-606b-4b4e-83ec-f00cfaa8cef2,"SWFSC Marine Mammal Survey, PODS 1992, Cruise 1467",survey,NOAA line-transect cruise on a set track
+39aa2775-5188-4b85-9b5a-896d7263ad03,"SWFSC Marine Mammal Survey, PODS 1993, Cruise 1508",survey,NOAA line-transect cruise on a set track
+59908045-b6e9-4411-b12b-bd320411965b,"SWFSC Marine Mammal Survey, PODS 1993, Cruise 1509",survey,NOAA line-transect cruise on a set track
+25891eec-ad56-4cbe-a252-a57dbef83e50,"SWFSC Marine Mammal Survey, STAR 1998, Cruise 1612",survey,NOAA line-transect cruise on a set track
+36fe915e-d5e9-4342-8856-ef5d5a5c3404,"SWFSC Marine Mammal Survey, STAR 1999, Cruise 1613",survey,NOAA line-transect cruise on a set track
+4a694757-eec3-446a-b730-c3bea4c479e3,"SWFSC Marine Mammal Survey, STAR 2000, Cruise 1615",survey,NOAA line-transect cruise on a set track
+ae4957e2-db31-4b45-908d-68f9c82322ac,"SWFSC Marine Mammal Survey, STAR 2003, Cruise 1623",survey,NOAA line-transect cruise on a set track
+34142e20-9e34-497f-8c53-e82eb6429b17,"SWFSC Marine Mammal Survey, STAR 2003, Cruise 1624",survey,NOAA line-transect cruise on a set track
+7404ceb5-ccd8-4dab-8144-6e69ad82d036,"SWFSC Marine Mammal Survey, STAR 2006, Cruise 1631",survey,NOAA line-transect cruise on a set track
+0fd1dae1-3b8c-4e11-bcad-10c95de2e95f,"SWFSC Marine Mammal Survey, SWAPS 1997, Cruise 1607",survey,NOAA line-transect cruise on a set track
+7a4427f6-67ee-4cc1-b95f-3045523420a1,Sanctuary Soundscape Monitoring Project (SanctSound) Daily Aggregated Species Detections,hydrophone,Fixed hydrophones; daily species presence
+d20949d6-d8e2-4b19-a449-e9ed11154685,Seabird observations in Marine Offshore Species Assessments to Inform Clean energy (MOSAIC) project,survey,Offshore seabird and marine mammal vessel surveys
+105b3c12-a0c1-497e-bc61-4d8a09c30a69,South Australian Museum Mammology Collection - marine records,other,Museum specimens
+68ed4f02-f04b-46ae-b273-0bcbf8a8f807,TOPP Summary of SSM-derived Telemetry,other,Satellite telemetry tag positions
+1d2b2b15-e5c9-4cb7-a553-daed58ec68eb,Transglobe Expedition at-sea observations of seabirds and cetaceans (1979-1982),other,Incidental at-sea observations on a polar expedition
+5a804d4e-7393-46ff-971c-0beceba02086,UK Royal Navy Marine Mammal Observations,other,Incidental sightings from naval ships
+a419c8da-35ed-4b62-9709-39b56369c44e,Video Annotation and Reference System (VARS) database,other,Annotated ROV dive video from research cruises
+8eeabc8b-33f9-46e9-80bb-dcb6e504c24b,WADFW PSAMP S1992,survey,Washington State aerial bird and mammal survey on fixed transects
+e22b7277-2eb7-4e2f-8111-219ed29174db,WADFW PSAMP S1993,survey,Washington State aerial bird and mammal survey on fixed transects
+6f0c8bfd-e76a-4d4f-b5e5-6c3983d6067b,WADFW PSAMP S1994,survey,Washington State aerial bird and mammal survey on fixed transects
+d3949eb1-ad8f-44fc-8e44-46c5f138126f,WADFW PSAMP S1995,survey,Washington State aerial bird and mammal survey on fixed transects
+8fa23a26-1655-4577-86d2-713dae162cab,WADFW PSAMP S1996,survey,Washington State aerial bird and mammal survey on fixed transects
+9da3adbe-be36-4dc2-bc7a-3f3fbc98de80,WADFW PSAMP S1997,survey,Washington State aerial bird and mammal survey on fixed transects
+50543b86-2e32-4ac6-9bd9-bb33bb48cbbc,WADFW PSAMP S1998,survey,Washington State aerial bird and mammal survey on fixed transects
+e83229a8-2533-4cb3-a4cc-a00c20c43c1d,WADFW PSAMP S1999,survey,Washington State aerial bird and mammal survey on fixed transects
+b8021b2a-6b27-4833-aa19-91631595c397,WADFW PSAMP W1993,survey,Washington State aerial bird and mammal survey on fixed transects
+208d760e-7a45-44ce-889e-f2d8b144858a,WADFW PSAMP W1994,survey,Washington State aerial bird and mammal survey on fixed transects
+65879312-2a5b-4c60-bc9b-97ab9e105336,WADFW PSAMP W1995,survey,Washington State aerial bird and mammal survey on fixed transects
+e35fcf81-e749-4bf5-a22c-b6e1cad8cbea,WADFW PSAMP W1996,survey,Washington State aerial bird and mammal survey on fixed transects
+1123992d-bdd3-4fc4-ae83-aa3938a53781,WADFW PSAMP W1997,survey,Washington State aerial bird and mammal survey on fixed transects
+af43ae80-11b6-467a-a902-822ba33377d8,WADFW PSAMP W1998,survey,Washington State aerial bird and mammal survey on fixed transects
+42334eea-fbf8-4b1e-9e62-85008bcc3bf6,WADFW PSAMP W1999,survey,Washington State aerial bird and mammal survey on fixed transects
+ba91e513-7bed-4d1a-ba5a-0cd926b76b46,WADFW PSAMP W2000,survey,Washington State aerial bird and mammal survey on fixed transects
+3e0eb6f8-2704-4369-be11-d3d58e9f1bd2,WADFW PSAMP W2001,survey,Washington State aerial bird and mammal survey on fixed transects
+07d39abf-bd4a-4d8b-8deb-4adc77a7458b,WADFW PSAMP W2002,survey,Washington State aerial bird and mammal survey on fixed transects
+4f047510-f0e4-4eed-a89f-25a2ca5c2754,WADFW PSAMP W2003,survey,Washington State aerial bird and mammal survey on fixed transects
+b91527ef-521d-4e8c-aeec-e554118a6618,WADFW PSAMP W2004,survey,Washington State aerial bird and mammal survey on fixed transects
+eaea291a-1e1d-4382-b86f-ac3cc15b8d5a,iNaturalist Research-grade Observations Marine Subset,public,Research-grade iNaturalist observations by members of the public

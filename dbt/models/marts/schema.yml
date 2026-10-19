@@ -1,0 +1,106 @@
+version: 2
+
+# The star, one model per table: fct_sighting (one row per whale record) and its four dimensions (when,
+# who recorded it, what, where).
+# Tests guard the joins: every key is unique, and every fact key finds its dimension row.
+
+models:
+  - name: dim_date
+    description: One row per day from 1925 to the last day with a record, with weekday, holiday and analysis-window flags.
+    columns:
+      - name: date_key
+        description: The date as an integer, YYYYMMDD.
+        data_tests: [unique, not_null]
+      - name: holiday_comparison
+        description: Holiday (a federal holiday, 2010 to 2026), Same Weekday (one week before or after it) or Weekend (the Saturday and Sunday of its week). Null on every other day.
+      - name: compared_holiday
+        description: The holiday a day is compared with, on every day that has a holiday_comparison.
+      - name: compared_holiday_date
+        description: The date of that holiday, which tells one year's Memorial Day from the next.
+      - name: is_weekend
+        description: Saturday or Sunday.
+      - name: is_midweek
+        description: Tuesday, Wednesday or Thursday, the days every weekend ratio is set against.
+      - name: in_spring_window
+        description: 15 March to 15 June, the window compared across 2019, 2020 and 2021.
+      - name: in_hydrophone_window
+        description: The days the SanctSound Monterey Bay hydrophones were recording.
+      - name: inat_observers
+        description: People who recorded any wildlife on iNaturalist inside the bay box that day; 0 when nobody did.
+
+  - name: dim_dataset
+    description: One row per OBIS dataset, with the kind of source it is.
+    columns:
+      - name: dataset_key
+        data_tests: [unique, not_null]
+      - name: kind
+        description: public (Happywhale, iNaturalist), survey (ship or aircraft), hydrophone, or other.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [public, survey, hydrophone, other]
+
+  - name: dim_species
+    description: One row per taxon a record was identified to, subspecies counted as their species.
+    columns:
+      - name: species_key
+        data_tests: [unique, not_null]
+      - name: common_name
+        description: From the species_names seed. A null means the seed is missing a taxon.
+        data_tests: [not_null]
+
+  - name: dim_location
+    description: One row per place a record can be, seven in all, the four areas outside Monterey Bay and the bay split by nearest harbor.
+    columns:
+      - name: location_key
+        data_tests: [unique, not_null]
+      - name: area
+        description: WA/BC, OR, N CA outside the bay, Monterey Bay or S CA; area_order runs north to south.
+      - name: nearest_harbor
+        description: Monterey, Moss Landing or Santa Cruz for the bay; null elsewhere.
+
+  - name: fct_sighting
+    description: One row per whale record on the West Coast. date_key is null when the record's date does not parse; km_to_harbor and km_band are null outside the bay.
+    columns:
+      - name: record_id
+        data_tests: [unique, not_null]
+      - name: date_key
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+      - name: dataset_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_dataset')
+                field: dataset_key
+      - name: species_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_species')
+                field: species_key
+      - name: location_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_location')
+                field: location_key
+      - name: local_hour
+        description: The clock hour written on the record, null for records with a date only.
+      - name: is_daylight_hour
+        description: Logged between 6:00 and 19:59, the hours the timetable shares are taken over.
+      - name: is_peak_hour
+        description: Logged between 10:00 and 11:59, the two busiest hours.
+      - name: trip_at_sea_weight
+        description: 1 for an hour a scheduled whale-watching trip is at sea, 0.5 for the half hours 13 and 16, 0 otherwise.
+      - name: km_band
+        description: km_to_harbor rounded up to a whole km, for the distance curve.
+      - name: map_cell
+        description: The record's map grid cell (0.025 by 0.02 degrees, about 2.2 km), one bubble on the map; map_lon and map_lat are its centre.

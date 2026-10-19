@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whales Only Exist on Weekends · Notebooks</title>
+<meta name="description" content="The six notebooks behind Whales Only Exist on Weekends: the SQL each claim rests on, run in Snowflake, with its results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght,SOFT,WONK@9..144,700..900,0..100,0..1&family=Space+Mono:wght@400;700&display=swap">
+<script src="site.js"></script>
+<style>
+  /* In the style of brandonconnely.com: the page is the water, what is on it sits on cream panels drawn in a
+     thick ink line with a hard shadow, and the buttons are chunky and press in. */
+  :root {
+    --bg: #0a2c33; --cream: #fbf5e6; --sand: #f1e6c8;
+    --ink: #1d2b2f; --ink-2: #3c4d51; --teal: #1f7d7a; --red: #d71920; --shadow: #062228;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'Space Mono', 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0; min-height: 100vh; color: var(--ink); font: 400 18px/1.6 var(--body);
+    -webkit-font-smoothing: antialiased; overflow-x: clip;
+    background-color: var(--bg);
+    background-image: linear-gradient(180deg, #3c948b 0, #277176 420px, #175a63 1100px, #0f4049 2000px, var(--bg) 100%);
+  }
+  a { color: inherit; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  .top { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; padding: 26px 0 8px; }
+  .brand {
+    margin-right: auto; color: var(--cream); text-decoration: none;
+    font: 900 34px/1 var(--display); font-variation-settings: 'SOFT' 100, 'WONK' 1; letter-spacing: -0.01em;
+    text-shadow: 3px 3px 0 var(--shadow);
+  }
+  .nav { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px;
+    font: 700 12.5px/1.2 var(--mono); letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none;
+    color: var(--ink); background: var(--cream); border: 2px solid var(--ink); border-radius: 6px;
+    box-shadow: 3px 3px 0 var(--ink); transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+  }
+  .btn:hover { background: #fff; transform: rotate(var(--tilt, 0deg)) translate(-1px, -2px); box-shadow: 4px 5px 0 var(--ink); }
+  .btn:active { transform: rotate(var(--tilt, 0deg)) translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
+  .nav .btn:nth-child(1) { --tilt: -1.2deg; }
+  .nav .btn:nth-child(2) { --tilt: 0.8deg; }
+  .btn.red { color: #fff; background: var(--red); }
+  .btn.red:hover { background: #e5342b; }
+
+  main { padding: 48px 0 70px; }
+  .panel {
+    position: relative; margin: 0 0 44px; padding: 46px 50px;
+    background: var(--cream); border: 2.5px solid var(--ink); border-radius: 18px; box-shadow: 7px 7px 0 var(--shadow);
+  }
+  .kicker {
+    display: inline-block; margin: 0 0 22px; padding: 7px 10px 6px; transform: rotate(-2deg);
+    font: 700 12.5px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--cream); background: var(--teal); border: 2px solid var(--ink); border-radius: 6px;
+  }
+  h1, h2 { font-family: var(--display); font-variation-settings: 'SOFT' 100, 'WONK' 1; color: var(--ink); }
+  h1 { margin: 0; font-size: clamp(38px, 6vw, 66px); font-weight: 900; line-height: 1.02; letter-spacing: -0.02em; }
+  .lede { max-width: 62ch; margin: 22px 0 0; font-size: 20px; line-height: 1.55; color: var(--ink-2); }
+  .prose { max-width: 66ch; }
+  .prose p { margin: 0 0 1em; }
+  .pipeline {
+    margin: 26px 0 0; padding: 16px 20px; font: 400 14px/1.7 var(--mono); color: var(--cream);
+    background: var(--ink); border: 2.5px solid var(--ink); border-radius: 12px; box-shadow: 4px 4px 0 var(--shadow);
+  }
+  .pipeline b { color: #f0cf7a; font-weight: 700; }
+  .callout { max-width: 66ch; margin: 26px 0 0; padding: 16px 20px; background: var(--sand); border: 2px solid var(--ink); border-radius: 12px; }
+  .callout p { margin: 0; }
+  .callout .k { margin-bottom: 6px; font: 700 12.5px/1.2 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+  .h2 { margin: 6px 0 26px; font-size: clamp(28px, 3.6vw, 36px); font-weight: 800; line-height: 1.1; }
+
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+  .card {
+    display: flex; flex-direction: column; height: 100%; padding: 22px 22px 20px; text-decoration: none;
+    color: var(--ink); background: #fff; border: 2.5px solid var(--ink); border-radius: 14px; box-shadow: 5px 5px 0 var(--ink);
+    transform: rotate(var(--tilt, 0deg)); transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cards li:nth-child(3n+1) .card { --tilt: -0.6deg; }
+  .cards li:nth-child(3n+2) .card { --tilt: 0.5deg; background: var(--sand); }
+  .cards li:nth-child(3n) .card { --tilt: -0.3deg; }
+  .card:hover { transform: rotate(var(--tilt)) translate(-2px, -4px); box-shadow: 7px 9px 0 var(--ink); }
+  .card:active { transform: rotate(var(--tilt)) translate(3px, 3px); box-shadow: 2px 2px 0 var(--ink); }
+  .card-num { font: 700 12.5px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+  .card-name { margin: 10px 0 10px; font: 900 27px/1.08 var(--display); font-variation-settings: 'SOFT' 100, 'WONK' 1; }
+  .card-line { margin: 0 0 18px; font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+  .card-go { margin-top: auto; font: 700 13px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+  .card-go::after { content: ' →'; }
+
+  .credits { margin: 34px 0 0; padding-top: 22px; border-top: 3px dashed rgba(29, 43, 47, 0.22); font-size: 15.5px; color: var(--ink-2); }
+  .credits p { margin: 0 0 8px; }
+
+  @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 760px) {
+    body { font-size: 16.5px; }
+    .wrap { padding: 0 16px; }
+    .top { padding-top: 18px; }
+    .brand { font-size: 26px; }
+    .nav { width: 100%; gap: 9px; }
+    .btn { padding: 9px 10px; font-size: 11.5px; }
+    main { padding-top: 36px; }
+    .panel { padding: 28px 18px; margin-bottom: 36px; border-radius: 14px; box-shadow: 5px 5px 0 var(--shadow); }
+    .lede { font-size: 18px; }
+    .pipeline { padding: 12px 14px; font-size: 12.5px; }
+    .cards { grid-template-columns: 1fr; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" data-portfolio="home">Brandon Connely</a>
+    <nav class="nav" aria-label="Site">
+      <a class="btn" href="https://github.com/Boaxes/Whales-Only-Exist-on-Weekends">Code</a>
+      <a class="btn" href="dbt/">dbt Docs</a>
+      <a class="btn red" data-portfolio="case">Case Study</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="panel">
+      <p class="kicker">Notebooks</p>
+      <h1>Whales Only Exist on Weekends</h1>
+      <p class="lede">Public whale sightings in Monterey Bay follow the people who log them: weekends, holidays,
+        mid-morning, close to three harbors. Underwater microphones that recorded on most days hear whales just as
+        often midweek. Six notebooks, one per claim, hold the SQL behind each finding and its results.</p>
+      <div class="pipeline"><b>Pipeline:</b> OBIS and iNaturalist open data, loaded into Snowflake, modelled by dbt
+        into a star schema (one fact table, four dimensions), analysed with SQL in Snowflake notebooks and shown in
+        Power BI.</div>
+      <div class="callout">
+        <p class="k">How These Pages Were Made</p>
+        <p>Each page ran once against the star in Snowflake (WHALES.MARTS) and keeps the results it got, so nothing
+          runs in the browser. The cells are the same as the Snowflake Workspace notebooks in the repository's
+          analysis folder.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 class="h2">Notebooks</h2>
+      <ul class="cards">
+        <li><a class="card" href="notebooks/01_weekends.html">
+          <span class="card-num">Notebook 01</span>
+          <span class="card-name">Whales Are Seen More on Weekends</span>
+          <p class="card-line">Public sightings rise at weekends; the hydrophones hear whales as often midweek.</p>
+          <span class="card-go">Open</span></a></li>
+        <li><a class="card" href="notebooks/02_holidays.html">
+          <span class="card-num">Notebook 02</span>
+          <span class="card-name">A Holiday Is Most of a Weekend</span>
+          <p class="card-line">A weekday federal holiday brings more public sightings than the same weekday a week before or after.</p>
+          <span class="card-go">Open</span></a></li>
+        <li><a class="card" href="notebooks/03_timetable.html">
+          <span class="card-num">Notebook 03</span>
+          <span class="card-name">Sightings Follow the Boat Timetable</span>
+          <p class="card-line">Public sightings bunch in the hours the whale-watching trips are at sea.</p>
+          <span class="card-go">Open</span></a></li>
+        <li><a class="card" href="notebooks/04_harbors.html">
+          <span class="card-num">Notebook 04</span>
+          <span class="card-name">Sightings Stay Close to the Harbors</span>
+          <p class="card-line">Public sightings stay much closer to the three harbors than ship and aircraft surveys.</p>
+          <span class="card-go">Open</span></a></li>
+        <li><a class="card" href="notebooks/05_lockdown.html">
+          <span class="card-num">Notebook 05</span>
+          <span class="card-name">The Whales Stayed When the Boats Stopped</span>
+          <p class="card-line">With the boats stopped in spring 2020, public sightings collapsed while the hydrophones still heard whales.</p>
+          <span class="card-go">Open</span></a></li>
+        <li><a class="card" href="notebooks/06_coast.html">
+          <span class="card-num">Notebook 06</span>
+          <span class="card-name">The Weekend Holds Along the Coast</span>
+          <p class="card-line">The weekend rise shows up along the rest of the West Coast too, except Oregon.</p>
+          <span class="card-go">Open</span></a></li>
+      </ul>
+      <div class="credits">
+        <p>All whale records come from the <a href="https://obis.org">OBIS</a> open-data archive (datasets published under
+          CC BY, CC BY-NC and CC0); every dataset, licence and citation is listed in
+          <a href="https://github.com/Boaxes/Whales-Only-Exist-on-Weekends/blob/main/CREDITS.md">CREDITS.md</a>.
+          Observer counts come from iNaturalist Open Data. Notebooks built with <a href="https://marimo.io">marimo</a>.</p>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
